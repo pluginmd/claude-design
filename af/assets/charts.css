@@ -141,3 +141,15 @@
 
 /* mini pill tag */
 .tg { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 650; padding: 2px 8px; border-radius: 9999px; }
+
+/* ── Swim-lane matrix (lane rows × step columns) ───────────────────────── */
+.swimx { min-width: 1040px; border: 1px solid var(--p-color-border); border-radius: var(--p-border-radius-300); overflow: hidden; background: var(--p-color-bg-surface); }
+.swimx-row { display: grid; grid-template-columns: 168px repeat(var(--cols), minmax(86px, 1fr)); border-top: 1px solid var(--p-color-border); align-items: center; min-height: 56px; }
+.swimx-row:first-child { border-top: none; }
+.swimx-lane { padding: 12px 12px; font-size: 12px; font-weight: 650; color: var(--p-color-text); background: var(--p-color-bg-surface-secondary); border-right: 1px solid var(--p-color-border); display: flex; align-items: center; gap: 8px; height: 100%; }
+.swimx-lane .ld { width: 8px; height: 8px; border-radius: 9999px; flex: none; }
+.swimx-head { background: var(--p-color-gray-16); }
+.swimx-head .swimx-lane { background: transparent; color: #fff; border-right-color: rgba(255,255,255,0.15); }
+.swimx-head .sx-c { text-align: center; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums; padding: 10px 0; }
+.swimx-row .fnode { margin: 6px; align-self: center; font-size: 11px; padding: 7px 9px; text-align: center; box-shadow: var(--p-shadow-100); }
+.swimx-row .fnode.start { grid-column: 2; }

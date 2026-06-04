@@ -132,7 +132,7 @@
     elBody.innerHTML =
       sec('Mục đích', '<p class="dz-purpose">'+esc(w.purpose)+'</p>') +
       sec('Data dictionary', fieldsTable(w.fields), w.fields?w.fields.length:0) +
-      sec('Workflow', nodeList(w.nodes), w.nodes&&w.nodes.length?w.nodes.length:null) +
+      sec('Workflow', (w.nodeNote?'<p class="dz-note">'+esc(w.nodeNote)+'</p>':'')+nodeList(w.nodes), w.nodes&&w.nodes.length?w.nodes.length:null) +
       sec('Quan hệ liên quan', relList(w.related), w.related?w.related.length:0) +
       sec('Automation chạm vào', pills(w.autos,'auto'), w.autos?w.autos.length:0) +
       sec('Vai trò tham gia', pills(w.roles,'role'), w.roles?w.roles.length:0);

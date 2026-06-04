@@ -4,12 +4,31 @@
   <p class="lede">Mục tiêu không phải "đưa quy trình lên phần mềm" mà biến mỗi SOP thành một workflow node-driven có chủ sở hữu, đầu vào/đầu ra, điều kiện chuyển bước và tự động hóa. Kết quả: một hệ vận hành mà ai cũng biết việc đang ở đâu, ai chịu trách nhiệm, và điều gì xảy ra tiếp theo.</p>
 </div>
 
+<!-- Dual development model -->
+<div class="block">
+  <div class="block-head"><h2>Mô hình lõi · hai luồng phát triển</h2><span class="bk-tag">Sản xuất &amp; FOB</span><span class="line"></span></div>
+  <p class="sub">Đây là quyết định kiến trúc quan trọng nhất: flow Production_AF mô tả <b>hai cách phát triển một sản phẩm</b>. Hệ thống Meegle phải mô hình hóa cả hai như hai template workflow trên cùng một Style, chọn qua trường <code style="font-family:var(--p-font-family-mono);font-size:11px;">development_mode</code>.</p>
+  <div class="grid-2">
+    <div class="card pad" style="border-top:3px solid var(--st2)">
+      <div class="tile-eyebrow"><span class="ico" style="background:var(--st2)">A</span> Phát triển · Sản xuất (in-house)</div>
+      <p class="muted" style="margin:0 0 10px;font-size:13px;line-height:1.55;">AF làm chủ toàn bộ: thiết kế → <b>làm rập</b> (Technical) → <b>may mẫu</b> (Sample Room) → quản lý NPL → <b>xuất NPL</b> cho factory gia công. 14 node, 2 gate duyệt mẫu (mẫu gốc &amp; size set) do Diễm Chi chủ trì.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge keep">Sample Room</span><span class="badge keep">NPL Check</span><span class="badge keep">Pattern Making</span><span class="badge keep">CMT</span></div>
+    </div>
+    <div class="card pad" style="border-top:3px solid var(--st3)">
+      <div class="tile-eyebrow"><span class="ico" style="background:var(--st3)">B</span> Phát triển · FOB</div>
+      <p class="muted" style="margin:0 0 10px;font-size:13px;line-height:1.55;">Nhà cung cấp phát triển: AF gửi tech pack → NCC <b>chào mẫu</b> (tự làm rập + sourcing NPL) → AF chọn &amp; duyệt → Technical <b>chuẩn hóa tài liệu sau duyệt</b>. 11 node, 2 gate (chọn mẫu &amp; duyệt nội bộ). Giá FOB trọn gói.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="badge keep">Supplier-led</span><span class="badge keep">Chào mẫu</span><span class="badge keep">No NPL Issue</span><span class="badge keep">FOB price</span></div>
+    </div>
+  </div>
+  <div class="callout magic" style="margin-top:var(--p-space-400);"><span class="ci">◆</span><div>Hai luồng <b>hội tụ tại "Tạo mã Product → Yêu cầu sản xuất"</b> và dùng chung chuỗi Sản xuất → Bán hàng. Xem trực quan đầy đủ ở tab <b>Value Chain</b>; workflow chi tiết từng node ở tab <b>Workflow</b>.</div></div>
+</div>
+
 <!-- Principles -->
 <div class="block">
   <div class="block-head"><h2>4 nguyên tắc thiết kế</h2><span class="line"></span></div>
   <div class="grid-2">
     <div class="card pad"><div class="principle"><div class="pno">01</div><div><h4>Node-driven, không phải status-driven</h4><p>Mỗi bước SOP là một node có người chịu trách nhiệm, deliverable, điều kiện hoàn thành. Workflow tự sinh WIT con và đẩy việc đến đúng người — thay vì chỉ đổi một dropdown "trạng thái".</p></div></div></div>
-    <div class="card pad"><div class="principle"><div class="pno">02</div><div><h4>Gate là công dân hạng nhất</h4><p>AF có 3 cổng duyệt mẫu độc lập (kỹ thuật · thương mại · sizing). Mỗi gate có chủ trì, tiêu chí đo lường và 3 lối ra chuẩn hóa: <b>Đạt / Sửa (loop) / Hủy (terminal)</b>.</p></div></div></div>
+    <div class="card pad"><div class="principle"><div class="pno">02</div><div><h4>Gate là công dân hạng nhất</h4><p>Mỗi nhánh phát triển có 2 cổng duyệt mẫu độc lập (Sản xuất: mẫu gốc · size set — FOB: chọn mẫu · duyệt nội bộ). Mỗi gate có chủ trì, tiêu chí đo lường và lối ra chuẩn hóa: <b>Đạt / Sửa (loop) / Hủy (terminal)</b>.</p></div></div></div>
     <div class="card pad"><div class="principle"><div class="pno">03</div><div><h4>Dữ liệu sinh một lần, dùng nhiều nơi</h4><p>Master Data (NPL, màu, size, factory) là dictionary dùng chung. SKU sinh tại Product Registration rồi chảy xuống sản xuất, kho, bán hàng — không nhập lại, không lệch.</p></div></div></div>
     <div class="card pad"><div class="principle"><div class="pno">04</div><div><h4>Tự động hóa các điểm chuyển giao</h4><p>26 automation lo việc bàn giao giữa các phòng: hết bước Design tự tạo NPL Check, duyệt mẫu xong tự tạo Sample Review tiếp theo. Con người tập trung vào quyết định, máy lo việc tạo hồ sơ.</p></div></div></div>
   </div>

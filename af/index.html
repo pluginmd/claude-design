@@ -41,6 +41,7 @@
 </main>
 
 <script>
+window.__BUILD = '4';
 (function(){
   // Tab registry — order defines the bar
   var TABS = [
@@ -92,7 +93,7 @@
   function render(id){
     if (cache[id]) { swap(cache[id]); return; }
     content.innerHTML = '<div class="tab-loading">Đang tải module…</div>';
-    fetch('tabs/' + id + '.html')
+    fetch('tabs/' + id + '.html?v=' + (window.__BUILD || '3'))
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
       .then(function(html){ cache[id] = html; swap(html); })
       .catch(function(e){
@@ -156,7 +157,7 @@
       return p.then(function(){
         return new Promise(function(res){
           var s = document.createElement('script');
-          s.src = src; s.onload = res; s.onerror = res;
+          s.src = src + '?v=' + (window.__BUILD || '2'); s.onload = res; s.onerror = res;
           document.body.appendChild(s);
         });
       });

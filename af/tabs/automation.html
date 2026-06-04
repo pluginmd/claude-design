@@ -1,32 +1,40 @@
 <div class="tab-intro">
   <div class="eyebrow"><span class="num">07</span> Automation · No-code rules</div>
-  <h1>26 quy tắc tự động hóa — <em>máy lo bàn giao, người lo quyết định</em></h1>
-  <p class="lede">Mỗi quy tắc gồm Trigger → Condition → Action. Chuỗi <code>A_ST*</code> điều phối trục Style; các nhóm còn lại lo NPL, sản xuất, kho và đồng bộ POS. Đây là phần thay thế hàng trăm email "đã xong, chuyển bước tiếp".</p>
+  <h1>30 quy tắc tự động hóa — <em>máy lo bàn giao, người lo quyết định</em></h1>
+  <p class="lede">Mỗi quy tắc gồm Trigger → Condition → Action. Chuỗi <code>A_ST*</code> điều phối nhánh Sản xuất, <code>A_FOB*</code> điều phối nhánh FOB; các nhóm còn lại lo NPL, sản xuất, kho và đồng bộ POS. Đây là phần thay thế hàng trăm email "đã xong, chuyển bước tiếp".</p>
 </div>
 
 <div class="block">
   <div class="kpis" style="grid-template-columns:repeat(4,1fr);margin-bottom:var(--p-space-600);">
-    <div class="kpi"><div class="kl">Chuỗi Style</div><div class="kv">10</div><div class="kd muted">A_ST1 → A_ST10</div></div>
+    <div class="kpi"><div class="kl">Chuỗi Sản xuất</div><div class="kv">10</div><div class="kd muted">A_ST1 → A_ST10</div></div>
+    <div class="kpi"><div class="kl">Chuỗi FOB</div><div class="kv">5</div><div class="kd muted">A_FOB1 → A_FOB5</div></div>
     <div class="kpi"><div class="kl">NPL &amp; Pattern</div><div class="kv">4</div><div class="kd muted">A_NPL1, A_PAT1–3</div></div>
-    <div class="kpi"><div class="kl">SKU &amp; Sản xuất</div><div class="kv">8</div><div class="kd muted">A_PR, A_FQ, A_PO…</div></div>
-    <div class="kpi"><div class="kl">Kho &amp; đặc biệt</div><div class="kv">4</div><div class="kd muted">A_IB, A_ALO, A_KILL</div></div>
+    <div class="kpi"><div class="kl">SKU · SX · Kho</div><div class="kv">11</div><div class="kd muted">A_PR, A_FQ, A_PO, A_IB…</div></div>
   </div>
 
   <div class="card" style="overflow:hidden;">
     <table class="autotable">
       <thead><tr><th style="width:90px;">ID</th><th style="width:32%;">Trigger</th><th style="width:20%;">Condition</th><th>Action</th></tr></thead>
       <tbody>
+        <tr><td class="aid" colspan="4" style="background:var(--st2-bg);color:var(--p-color-text);font-weight:700;">▸ Nhánh Sản xuất (in-house)</td></tr>
         <tr data-drawer="auto:A_PB1"><td class="aid">A_PB1</td><td>Product Brief · "Assign to Design"</td><td class="cond">—</td><td class="act-cell">Tạo Style, link brief, inherit category/segment</td></tr>
         <tr data-drawer="auto:A_ST1"><td class="aid">A_ST1</td><td>Style · N4 Kiểm tra NPL arrived</td><td class="cond"><code>npl_check</code> empty</td><td class="act-cell">Tạo NPL Check, link style</td></tr>
         <tr data-drawer="auto:A_ST2"><td class="aid">A_ST2</td><td>Style · N5 arrived</td><td class="cond"><code>pattern</code> empty</td><td class="act-cell">Tạo Pattern Making (rập mẫu gốc)</td></tr>
         <tr data-drawer="auto:A_ST3"><td class="aid">A_ST3</td><td>Style · N6 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (mẫu gốc)</td></tr>
         <tr data-drawer="auto:A_ST4"><td class="aid">A_ST4</td><td>Sample Order (mẫu gốc) closed</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt mẫu gốc)</td></tr>
-        <tr data-drawer="auto:A_ST5"><td class="aid">A_ST5</td><td>Style · N9 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt nội bộ)</td></tr>
-        <tr data-drawer="auto:A_ST6"><td class="aid">A_ST6</td><td>Style · N11 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (size set)</td></tr>
+        <tr data-drawer="auto:A_ST5"><td class="aid">A_ST5</td><td>Style(Sản xuất) · N9 Nhảy rập arrived</td><td class="cond"><code>pattern_sizeset</code> empty</td><td class="act-cell">Tạo Pattern Making (nhảy rập size set)</td></tr>
+        <tr data-drawer="auto:A_ST6"><td class="aid">A_ST6</td><td>Style · N10 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (size set)</td></tr>
         <tr data-drawer="auto:A_ST7"><td class="aid">A_ST7</td><td>Sample Order (size set) closed</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt size set)</td></tr>
         <tr data-drawer="auto:A_ST8"><td class="aid">A_ST8</td><td>Style · N13 arrived</td><td class="cond"><code>tech_doc</code> empty</td><td class="act-cell">Tạo Tech Doc</td></tr>
         <tr data-drawer="auto:A_ST9"><td class="aid">A_ST9</td><td>Style · N14 arrived</td><td class="cond"><code>product_reg</code> empty</td><td class="act-cell">Tạo Product Registration</td></tr>
-        <tr data-drawer="auto:A_ST10"><td class="aid">A_ST10</td><td>Style · N15 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Production Request</td></tr>
+        <tr data-drawer="auto:A_ST10"><td class="aid">A_ST10</td><td>Style · N14 (sau Product Reg)</td><td class="cond">—</td><td class="act-cell">Tạo Production Request</td></tr>
+        <tr><td class="aid" colspan="4" style="background:var(--st3-bg);color:var(--p-color-text);font-weight:700;">▸ Nhánh FOB (nhà cung cấp phát triển)</td></tr>
+        <tr><td class="aid">A_FOB1</td><td>Style(FOB) · N4 Tìm NCC arrived</td><td class="cond">mỗi NCC mời</td><td class="act-cell">Tạo Factory Quotation (loại FOB)</td></tr>
+        <tr><td class="aid">A_FOB2</td><td>Style(FOB) · N5 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (mẫu chào · made_by=NCC)</td></tr>
+        <tr><td class="aid">A_FOB3</td><td>Sample Order (mẫu chào) received</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (loại: chọn mẫu)</td></tr>
+        <tr><td class="aid">A_FOB4</td><td>Style(FOB) · N9 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (loại: duyệt nội bộ)</td></tr>
+        <tr><td class="aid">A_FOB5</td><td>Style(FOB) · N10 arrived</td><td class="cond">mẫu đã đạt</td><td class="act-cell">Tạo Pattern Making (tham chiếu) + Tech Doc</td></tr>
+        <tr><td class="aid" colspan="4" style="background:var(--p-color-bg-surface-secondary);color:var(--p-color-text);font-weight:700;">▸ Chung · NPL · SX · Kho · đặc biệt</td></tr>
         <tr data-drawer="auto:A_NPL1"><td class="aid">A_NPL1</td><td>NPL Check · N3 mỗi item thiếu</td><td class="cond">—</td><td class="act-cell">Tạo NPL Development <i>hoặc</i> Material PO</td></tr>
         <tr data-drawer="auto:A_PAT1"><td class="aid">A_PAT1</td><td>Pattern Making · N3</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (mẫu gốc)</td></tr>
         <tr data-drawer="auto:A_PAT2"><td class="aid">A_PAT2</td><td>Pattern Making · N5</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (size set)</td></tr>
@@ -48,6 +56,6 @@
 
   <div class="callout info" style="margin-top:18px;">
     <span class="ci">⚡</span>
-    <div>Ngoài 26 automation cốt lõi, lớp <b>SLA &amp; Notification</b> chạy song song: nhắc deadline node, cảnh báo trễ, escalate khi gate lặp &gt; 3 vòng. Cấu hình ở Sprint 2 · Day 14.</div>
+    <div>Ngoài 30 automation cốt lõi, lớp <b>SLA &amp; Notification</b> chạy song song: nhắc deadline node, cảnh báo trễ, escalate khi gate lặp &gt; 3 vòng. Cấu hình ở Sprint 2 · Day 14.</div>
   </div>
 </div>

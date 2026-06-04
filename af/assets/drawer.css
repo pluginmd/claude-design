@@ -58,6 +58,7 @@
 .dz-sec-h .cnt { background: var(--p-color-gray-6); color: var(--p-color-text-secondary); border-radius: 9999px; padding: 0 7px; font-size: 10px; font-weight: 700; }
 
 .dz-purpose { font-size: 13.5px; line-height: 1.6; color: var(--p-color-text); margin: 0; }
+.dz-note { font-size: 12px; line-height: 1.5; color: var(--p-color-text-secondary); margin: 0 0 12px; padding: 9px 12px; background: var(--p-color-bg-surface-secondary); border-left: 3px solid var(--p-color-border-magic); border-radius: var(--p-border-radius-150); }
 
 /* node list inside drawer */
 .dz-nodes { display: flex; flex-direction: column; gap: 0; }

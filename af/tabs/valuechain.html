@@ -1,228 +1,246 @@
 <div class="tab-intro">
   <div class="eyebrow"><span class="num">03</span> Value Chain · Trực quan hóa toàn bộ chuỗi</div>
-  <h1>Một dòng chảy duy nhất — <em>16 phòng ban, 5 giai đoạn, 3 cổng duyệt</em></h1>
-  <p class="lede">Tái hiện trực tiếp flow PDF Production_AF dưới dạng swim-lane: hàng là phòng ban/người quyết định, cột là giai đoạn. Theo sau là sơ đồ node end-to-end chi tiết của trục xương sống Style. Cuộn ngang để xem toàn cảnh.</p>
+  <h1>Hai luồng phát triển — <em>Sản xuất &amp; FOB</em> — hội tụ về một chuỗi sản xuất–bán hàng</h1>
+  <p class="lede">Theo đúng flow PDF Production_AF: American Fashion vận hành <b>hai mô hình phát triển sản phẩm song song</b>. Cả hai gặp nhau tại "Tạo mã Product → Yêu cầu sản xuất", rồi đi chung qua sản xuất, kho và bán hàng. Bấm chuyển giữa các luồng bên dưới.</p>
 </div>
 
-<!-- Legend -->
-<div class="block" style="margin-bottom:var(--p-space-600);">
-  <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:12px;">
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface);border:1px solid var(--p-color-border-tertiary);border-left:3px solid var(--p-color-gray-16);"></span> Bắt đầu</span>
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface);border:1px solid var(--p-color-border-tertiary);"></span> Thao tác / xử lý</span>
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-caution);border:1px solid var(--p-color-border-caution);"></span> Điều kiện / gate</span>
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-magic);border:1px solid var(--p-color-border-magic);"></span> Explode (Style→SKU)</span>
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-critical);border:1px solid var(--p-color-border-critical);"></span> Hủy sản phẩm</span>
-    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-success);border:1px solid var(--p-color-border-success);"></span> Hoàn tất</span>
+<div data-dvgroup="vc" class="dv-nav">
+  <span class="dv-tab active" data-dv="ov"><span class="dn">◎</span>Tổng quan</span>
+  <span class="dv-tab" data-dv="sx"><span class="dn">A</span>Phát triển · Sản xuất</span>
+  <span class="dv-tab" data-dv="fob"><span class="dn">B</span>Phát triển · FOB</span>
+  <span class="dv-tab" data-dv="down"><span class="dn">→</span>Sản xuất → Bán hàng</span>
+</div>
+
+<!-- legend -->
+<div style="display:flex;flex-wrap:wrap;gap:14px;font-size:12px;margin-bottom:var(--p-space-600);">
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface);border:1px solid var(--p-color-border-tertiary);border-left:3px solid var(--p-color-gray-16);"></span> Bắt đầu</span>
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface);border:1px solid var(--p-color-border-tertiary);"></span> Thao tác</span>
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-caution);border:1px solid var(--p-color-border-caution);"></span> Điều kiện / gate</span>
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-magic);border:1px solid var(--p-color-border-magic);"></span> Explode SKU</span>
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-critical);border:1px solid var(--p-color-border-critical);"></span> Hủy sản phẩm</span>
+  <span style="display:inline-flex;align-items:center;gap:7px;"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:var(--p-color-bg-surface-success);border:1px solid var(--p-color-border-success);"></span> Hoàn tất</span>
+</div>
+
+<!-- ===================== OVERVIEW ===================== -->
+<div class="dv-panel active" data-dvpanel="ov">
+  <div class="block">
+    <div class="block-head"><h2>Bản đồ vĩ mô</h2><span class="bk-tag">5 giai đoạn · 2 nhánh phát triển</span><span class="line"></span></div>
+    <div class="grid-3" style="grid-template-columns:repeat(5,1fr);">
+      <div class="card" style="overflow:hidden;"><div style="height:5px;background:var(--st1)"></div><div class="pad"><div class="muted" style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.05em;">Giai đoạn 1</div><div style="font-size:16px;font-weight:750;margin:4px 0 8px;">Ý tưởng</div><p class="muted" style="font-size:12px;line-height:1.5;margin:0;">Merchandising + Production Planning đề xuất → Calvin duyệt Product Brief.</p></div></div>
+      <div class="card" style="overflow:hidden;border:2px solid var(--p-color-border-magic);"><div style="height:5px;background:linear-gradient(90deg,var(--st2) 50%,var(--st3) 50%)"></div><div class="pad"><div class="muted" style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.05em;color:var(--p-color-text-magic)">Giai đoạn 2 · rẽ nhánh</div><div style="font-size:16px;font-weight:750;margin:4px 0 8px;">Phát triển sản phẩm</div><p class="muted" style="font-size:12px;line-height:1.5;margin:0;"><b>Sản xuất</b> (in-house) <b>hoặc FOB</b> (nhà cung cấp phát triển).</p></div></div>
+      <div class="card" style="overflow:hidden;"><div style="height:5px;background:var(--st3)"></div><div class="pad"><div class="muted" style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.05em;">Giai đoạn 3</div><div style="font-size:16px;font-weight:750;margin:4px 0 8px;">Sản xuất</div><p class="muted" style="font-size:12px;line-height:1.5;margin:0;">Factory sản xuất → QC → nhập kho. Chung cho cả 2 nhánh.</p></div></div>
+      <div class="card" style="overflow:hidden;"><div style="height:5px;background:var(--st4)"></div><div class="pad"><div class="muted" style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.05em;">Giai đoạn 4</div><div style="font-size:16px;font-weight:750;margin:4px 0 8px;">Bán hàng</div><p class="muted" style="font-size:12px;line-height:1.5;margin:0;">Marketing → phân bổ → Sales → đối soát.</p></div></div>
+      <div class="card" style="overflow:hidden;"><div style="height:5px;background:var(--st5)"></div><div class="pad"><div class="muted" style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.05em;">Giai đoạn 5</div><div style="font-size:16px;font-weight:750;margin:4px 0 8px;">Khách dùng SP</div><p class="muted" style="font-size:12px;line-height:1.5;margin:0;">Trải nghiệm, bảo hành, trả hàng, KPI.</p></div></div>
+    </div>
   </div>
-</div>
 
-<!-- SWIM LANE -->
-<div class="block">
-  <div class="block-head"><h2>Swim-lane chuỗi giá trị</h2><span class="bk-tag">Phòng ban × Giai đoạn</span><span class="line"></span></div>
-  <div class="flowwrap">
-    <div class="swim">
-      <div class="swim-header">
-        <div class="corner"></div>
-        <div class="sh" style="background:var(--st1)"><span class="sn">Giai đoạn 1</span>Ý tưởng</div>
-        <div class="sh" style="background:var(--st2)"><span class="sn">Giai đoạn 2</span>Phát triển sản phẩm</div>
-        <div class="sh" style="background:var(--st3)"><span class="sn">Giai đoạn 3</span>Sản xuất</div>
-        <div class="sh" style="background:var(--st4)"><span class="sn">Giai đoạn 4</span>Bán hàng</div>
-        <div class="sh" style="background:var(--st5)"><span class="sn">Giai đoạn 5</span>Hậu mãi</div>
-      </div>
-
-      <!-- Calvin -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st1)"></span>Anh Calvin</div>
-        <div class="swim-cell"><div class="fnode gate">Duyệt ý tưởng<span class="branch-note">GO / NO-GO Product Brief</span></div></div>
-        <div class="swim-cell"><div class="fnode gate">Duyệt mẫu nội bộ<span class="branch-note">Gate 2 · go/no-go thương mại</span></div></div>
-        <div class="swim-cell"><div class="fnode proc">Duyệt giá Factory</div></div>
-        <div class="swim-cell"><div class="fnode proc">Duyệt campaign</div></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Diễm Chi -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Chị Diễm Chi</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode gate">Duyệt mẫu gốc<span class="branch-note">Gate 1 · kỹ thuật</span></div><div class="fconn">↓</div><div class="fnode gate">Duyệt size set<span class="branch-note">Gate 3 · sizing</span></div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Production Planning -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st1)"></span>Production Planning</div>
-        <div class="swim-cell"><div class="fnode start">Khởi tạo ý tưởng</div></div>
-        <div class="swim-cell"><div class="fnode proc">Thử mẫu nội bộ</div></div>
-        <div class="swim-cell"><div class="fnode proc">Yêu cầu sản xuất</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Merchandising -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st1)"></span>Merchandising</div>
-        <div class="swim-cell"><div class="fnode proc">Đề xuất Product Brief</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Theo dõi KPI bán</div></div>
-      </div>
-      <!-- Design -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Design</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Thiết kế phác thảo</div><div class="fconn">↓</div><div class="fnode proc">Thiết kế chi tiết</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Purchasing -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Purchasing</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode gate">Kiểm tra NPL?<span class="branch-note">Đủ → tiếp · Thiếu → ↓</span></div><div class="fconn">↓</div><div class="fnode proc">Phát triển NPL / tìm NCC / thay thế</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Technical -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Technical</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Làm rập mẫu gốc</div><div class="fconn">↓</div><div class="fnode proc">Bảng thông số KT</div><div class="fconn">↓</div><div class="fnode proc">Nhảy rập size set</div><div class="fconn">↓</div><div class="fnode proc">Ban hành Tài liệu KT</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Sample Room -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Sample Room</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">May mẫu gốc</div><div class="fconn">↓</div><div class="fnode proc">May size set</div></div>
-        <div class="swim-cell"><div class="fnode proc">May mẫu chào (Factory)</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Production -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st2)"></span>Production</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode explode">Tạo mã Product<span class="branch-note">Style → N SKU · đẩy POS</span></div></div>
-        <div class="swim-cell"><div class="fnode proc">Lệnh SX → lô SX</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Factory -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st3)"></span>Factory</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Chào mẫu / chào giá</div><div class="fconn">↓</div><div class="fnode proc">Sản xuất hàng loạt</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Supplier -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st3)"></span>Supplier</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Nhận mẫu NPL</div></div>
-        <div class="swim-cell"><div class="fnode proc">Cung ứng NPL</div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- QC -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st3)"></span>QC</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Test NPL nội bộ</div></div>
-        <div class="swim-cell"><div class="fnode gate">Kiểm tra chất lượng<span class="branch-note">NPL · in-line · final</span></div></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Kiểm hàng trả</div></div>
-      </div>
-      <!-- Warehouse -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st3)"></span>Warehouse</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Xuất NPL</div><div class="fconn">↓</div><div class="fnode proc">Nhập kho thành phẩm</div></div>
-        <div class="swim-cell"><div class="fnode proc">Phân bổ cửa hàng</div></div>
-        <div class="swim-cell"><div class="fnode proc">Điều chỉnh tồn</div></div>
-      </div>
-      <!-- Marketing -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st4)"></span>Marketing</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Chiến dịch truyền thông</div></div>
-        <div class="swim-cell"></div>
-      </div>
-      <!-- Sales -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st4)"></span>Sales</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Bán online + offline</div><div class="fconn">↓</div><div class="fnode end">Khách hàng sử dụng SP</div></div>
-        <div class="swim-cell"><div class="fnode proc">Nhận đơn trả</div></div>
-      </div>
-      <!-- Accounting -->
-      <div class="swim-row">
-        <div class="lane"><span class="ld" style="background:var(--st4)"></span>Accounting</div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"></div>
-        <div class="swim-cell"><div class="fnode proc">Đối soát doanh thu</div></div>
-        <div class="swim-cell"><div class="fnode proc">Hoàn tiền / công nợ</div></div>
+  <!-- convergence diagram -->
+  <div class="block">
+    <div class="block-head"><h2>Hai nhánh hội tụ</h2><span class="bk-tag">điểm gặp · Tạo mã Product</span><span class="line"></span></div>
+    <div class="card pad" style="padding:26px 22px;">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;">
+        <!-- track A -->
+        <div style="border:1px solid var(--p-color-border);border-radius:var(--p-border-radius-300);overflow:hidden;">
+          <div style="background:var(--st2);color:#fff;padding:11px 15px;"><div style="font-size:11px;font-weight:650;letter-spacing:0.05em;text-transform:uppercase;opacity:0.85;">Nhánh A</div><div style="font-size:16px;font-weight:750;">Phát triển · Sản xuất</div></div>
+          <div class="pad" style="padding:14px;"><p class="muted" style="margin:0 0 10px;font-size:12.5px;line-height:1.5;">AF tự phát triển: thiết kế → <b>làm rập</b> → <b>may mẫu</b> (Sample Room) → quản lý NPL → 2 gate duyệt mẫu.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="dept">Design</span><span class="dept">Technical</span><span class="dept">Sample Room</span><span class="dept">Purchasing</span><span class="dept">Diễm Chi</span></div></div>
+        </div>
+        <!-- merge -->
+        <div style="text-align:center;">
+          <div style="font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:0.04em;color:var(--p-color-text-secondary);margin-bottom:8px;">hội tụ</div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="font-size:20px;color:var(--p-color-text-disabled);line-height:1;">↘</div>
+            <div class="fnode explode" data-drawer="wit:product-registration" style="cursor:pointer;white-space:nowrap;">Tạo mã Product</div>
+            <div style="font-size:20px;color:var(--p-color-text-disabled);line-height:1;">↓</div>
+            <div class="fnode" data-drawer="wit:production-request" style="cursor:pointer;white-space:nowrap;">Yêu cầu sản xuất</div>
+            <div style="font-size:20px;color:var(--p-color-text-disabled);line-height:1;">↗</div>
+          </div>
+        </div>
+        <!-- track B -->
+        <div style="border:1px solid var(--p-color-border);border-radius:var(--p-border-radius-300);overflow:hidden;">
+          <div style="background:var(--st3);color:#fff;padding:11px 15px;"><div style="font-size:11px;font-weight:650;letter-spacing:0.05em;text-transform:uppercase;opacity:0.85;">Nhánh B</div><div style="font-size:16px;font-weight:750;">Phát triển · FOB</div></div>
+          <div class="pad" style="padding:14px;"><p class="muted" style="margin:0 0 10px;font-size:12.5px;line-height:1.5;">Nhà cung cấp phát triển: AF gửi thiết kế → NCC <b>chào mẫu</b> → chọn mẫu → duyệt → Technical chỉ <b>chuẩn hóa tài liệu</b>.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="dept">Design</span><span class="dept">Purchasing</span><span class="dept">Supplier</span><span class="dept">Factory</span><span class="dept">Technical</span></div></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="callout warn" style="margin-top:18px;">
-    <span class="ci">⎇</span>
-    <div>Nhánh <b>Hủy sản phẩm</b> có thể kích hoạt tại bất kỳ gate nào (Calvin hoặc Diễm Chi). Khi đó Style chuyển về terminal "Hủy", khóa toàn bộ field thiết kế và dừng mọi WIT con — automation <code>A_KILL</code> đảm nhiệm.</div>
+
+  <!-- comparison table -->
+  <div class="block">
+    <div class="block-head"><h2>Sản xuất khác FOB ở đâu</h2><span class="line"></span></div>
+    <div class="card" style="overflow:hidden;">
+      <table class="tabledeep">
+        <thead><tr><th style="width:22%;">Khía cạnh</th><th>Phát triển · Sản xuất</th><th>Phát triển · FOB</th></tr></thead>
+        <tbody>
+          <tr><td>Ai làm rập &amp; mẫu</td><td><b>AF</b> — Technical làm rập, Sample Room may mẫu gốc &amp; size set</td><td><b>Nhà cung cấp</b> — chào mẫu theo tech pack AF gửi</td></tr>
+          <tr><td>Nguyên phụ liệu</td><td>AF quản lý: kiểm tra → phát triển/thay thế → mua → <b>xuất NPL</b> cho factory</td><td>NCC tự lo NPL — giá FOB đã gồm vật liệu</td></tr>
+          <tr><td>Cổng duyệt</td><td>Duyệt mẫu gốc · Duyệt size set <span class="muted">(Diễm Chi)</span></td><td>Chọn mẫu · Duyệt mẫu nội bộ <span class="muted">(Production)</span></td></tr>
+          <tr><td>Tài liệu kỹ thuật</td><td>Soạn <b>trước</b> khi may (rập → thông số)</td><td>Soạn <b>sau</b> khi chọn mẫu (chuẩn hóa từ mẫu NCC đạt)</td></tr>
+          <tr><td>Vai trò trung tâm</td><td>Sample Room, Technical, Diễm Chi</td><td>Purchasing, Supplier, Factory</td></tr>
+          <tr><td>Cơ cấu chi phí</td><td>NPL + CMT (cắt-may-hoàn thiện)</td><td>Giá FOB trọn gói / sản phẩm</td></tr>
+          <tr><td>Thời gian phát triển</td><td>Dài hơn — chủ động chất lượng &amp; bảo mật mẫu</td><td>Ngắn hơn — phụ thuộc năng lực NCC</td></tr>
+          <tr><td>Phù hợp khi</td><td>Sản phẩm chủ lực, kỹ thuật cao, cần kiểm soát</td><td>Bổ sung dải hàng nhanh, sản phẩm phổ thông</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-<!-- LINEAR backbone flow -->
-<div class="block">
-  <div class="block-head"><h2>Sơ đồ node end-to-end · trục Style</h2><span class="bk-tag">16 node + chuyển tiếp sản xuất</span><span class="line"></span></div>
-  <p class="sub">Trục xương sống chạy tuần tự qua 16 node, sau đó bàn giao sang chuỗi sản xuất &amp; bán hàng. 3 node vàng là gate, node tím là điểm explode.</p>
-  <div class="linflow">
-    <div class="linstep"><div class="box" style="border-left:3px solid var(--st1)"><span class="sidx" style="background:var(--st1)">01</span><span class="stt">Brief &amp; Ý tưởng</span><span class="sdept">Designer</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">02</span><span class="stt">Thiết kế phác thảo</span><span class="sdept">Designer</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">03</span><span class="stt">Thiết kế chi tiết</span><span class="sdept">Designer</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">04</span><span class="stt">Kiểm tra NPL</span><span class="sdept">Purchasing · gate</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">05</span><span class="stt">Làm rập mẫu gốc</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">06</span><span class="stt">May mẫu gốc</span><span class="sdept">Sample Room</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">07</span><span class="stt">Gate 1 · Duyệt mẫu gốc</span><span class="sdept">Diễm Chi</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">08</span><span class="stt">Thử mẫu nội bộ</span><span class="sdept">PP+Merch+Design</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">09</span><span class="stt">Gate 2 · Duyệt nội bộ</span><span class="sdept">Calvin</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">10</span><span class="stt">Nhảy rập size set</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">11</span><span class="stt">May size set</span><span class="sdept">Sample Room</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">12</span><span class="stt">Gate 3 · Duyệt size set</span><span class="sdept">Diễm Chi+Tech</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">13</span><span class="stt">Ban hành Tài liệu KT</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-magic);border-color:var(--p-color-border-magic)"><span class="sidx" style="background:var(--p-color-bg-fill-magic)">14</span><span class="stt">Tạo mã Product ◆</span><span class="sdept">Production · explode</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">15</span><span class="stt">Yêu cầu sản xuất</span><span class="sdept">Prod. Planning</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-success);border-color:var(--p-color-border-success)"><span class="sidx" style="background:var(--st4)">16</span><span class="stt">Closed · Sẵn sàng bán</span><span class="sdept">Auto</span></div></div>
+<!-- ===================== SELF-PRODUCTION ===================== -->
+<div class="dv-panel" data-dvpanel="sx">
+  <div class="board-head"><div><div class="bt">Phát triển sản phẩm · Sản xuất</div><div class="bo">In-house · 2 gate duyệt (mẫu gốc · size set) · AF làm chủ rập, mẫu, NPL</div></div><span class="bmode">Swim-lane + Node flow</span></div>
+
+  <!-- swim lane -->
+  <div class="block">
+    <div class="flowwrap">
+      <div class="swimx" style="--cols:14;">
+        <div class="swimx-row swimx-head">
+          <div class="swimx-lane">Phòng ban \\ Bước</div>
+          <div class="sx-c">01</div><div class="sx-c">02</div><div class="sx-c">03</div><div class="sx-c">04</div><div class="sx-c">05</div><div class="sx-c">06</div><div class="sx-c">07</div><div class="sx-c">08</div><div class="sx-c">09</div><div class="sx-c">10</div><div class="sx-c">11</div><div class="sx-c">12</div><div class="sx-c">13</div><div class="sx-c">14</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st1)"></span>Merchandising / PP</div>
+          <div class="fnode start" style="grid-column:2">Ý tưởng</div>
+          <div class="fnode" style="grid-column:15">Yêu cầu sản xuất</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Design</div>
+          <div class="fnode" style="grid-column:3">Thiết kế phác thảo</div>
+          <div class="fnode" style="grid-column:4">Thiết kế chi tiết</div>
+          <div class="fnode" style="grid-column:8">Thử mẫu nội bộ</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Purchasing</div>
+          <div class="fnode gate" style="grid-column:5">Kiểm tra NPL?</div>
+          <div class="fnode" data-drawer="wit:npl-development" style="grid-column:6;cursor:pointer;">Phát triển NPL / thay thế</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Technical</div>
+          <div class="fnode" data-drawer="wit:pattern-making" style="grid-column:6;cursor:pointer;">Làm rập mẫu gốc</div>
+          <div class="fnode" style="grid-column:10">Nhảy rập size set</div>
+          <div class="fnode" data-drawer="wit:tech-doc" style="grid-column:13;cursor:pointer;">Ban hành Tài liệu KT</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Sample Room</div>
+          <div class="fnode" data-drawer="wit:sample-order" style="grid-column:7;cursor:pointer;">May mẫu gốc</div>
+          <div class="fnode" style="grid-column:11">May size set mẫu gốc</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st1)"></span>Chị Diễm Chi</div>
+          <div class="fnode gate" data-drawer="wit:sample-review" style="grid-column:9;cursor:pointer;">Duyệt mẫu gốc?</div>
+          <div class="fnode gate" data-drawer="wit:sample-review" style="grid-column:12;cursor:pointer;">Duyệt size set?</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st3)"></span>Production</div>
+          <div class="fnode explode" data-drawer="wit:product-registration" style="grid-column:14;cursor:pointer;">Tạo mã Product</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:16px;"><span class="ci">⎇</span><div>Hai vòng lặp: <b>Duyệt mẫu gốc</b> "No" → quay lại Làm rập (sửa); <b>Duyệt size set</b> "No" → <b>Hủy sản phẩm</b> (terminal). NPL "Thiếu" → nhánh Phát triển NPL / Dùng NPL thay thế trước khi xuất NPL.</div></div>
+  </div>
+
+  <!-- linear node flow -->
+  <div class="block">
+    <div class="block-head"><h2>Trình tự node</h2><span class="bk-tag">14 node · 2 gate</span><span class="line"></span></div>
+    <div class="linflow">
+      <div class="linstep"><div class="box" style="border-left:3px solid var(--st1)"><span class="sidx" style="background:var(--st1)">01</span><span class="stt">Ý tưởng</span><span class="sdept">Merchandising</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">02</span><span class="stt">Phác thảo</span><span class="sdept">Design</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">03</span><span class="stt">Thiết kế chi tiết</span><span class="sdept">Design</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">04</span><span class="stt">Kiểm tra NPL?</span><span class="sdept">Purchasing · branch</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">05</span><span class="stt">Làm rập mẫu gốc</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">06</span><span class="stt">May mẫu gốc</span><span class="sdept">Sample Room</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">07</span><span class="stt">Thử mẫu nội bộ</span><span class="sdept">Design + team</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">08</span><span class="stt">Gate · Duyệt mẫu gốc?</span><span class="sdept">Diễm Chi</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">09</span><span class="stt">Nhảy rập size set</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">10</span><span class="stt">May size set</span><span class="sdept">Sample Room</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">11</span><span class="stt">Thử size set</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">12</span><span class="stt">Gate · Duyệt size set?</span><span class="sdept">Diễm Chi</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">13</span><span class="stt">Ban hành Tài liệu KT</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-magic);border-color:var(--p-color-border-magic)"><span class="sidx" style="background:var(--p-color-bg-fill-magic)">14</span><span class="stt">Tạo mã Product ◆</span><span class="sdept">Production · explode</span></div></div>
+    </div>
+    <div class="callout neutral" style="margin-top:14px;font-size:12.5px;"><span class="ci">→</span><div>Sau node 14: <b>Yêu cầu sản xuất</b> → chuyển sang chuỗi Sản xuất → Bán hàng (xem tab tương ứng).</div></div>
   </div>
 </div>
 
-<!-- Production chain continuation -->
-<div class="block">
-  <div class="block-head"><h2>Chuyển tiếp · chuỗi sản xuất → bán hàng</h2><span class="bk-tag">Sau node 15</span><span class="line"></span></div>
-  <div class="linflow">
-    <div class="linstep"><div class="box" style="border-left:3px solid var(--st3)"><span class="sidx" style="background:var(--st3)">A</span><span class="stt">Yêu cầu sản xuất</span><span class="sdept">Prod. Planning</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">B</span><span class="stt">Chào giá Factory</span><span class="sdept">Factory</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">C</span><span class="stt">Lệnh sản xuất</span><span class="sdept">Production</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">D</span><span class="stt">Xuất NPL</span><span class="sdept">Warehouse</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">E</span><span class="stt">Lô sản xuất</span><span class="sdept">Factory</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">F</span><span class="stt">QC Final</span><span class="sdept">QC · gate</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">G</span><span class="stt">Nhập kho (map SKU)</span><span class="sdept">Warehouse</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st4)">H</span><span class="stt">Phân bổ cửa hàng</span><span class="sdept">Prod. Planning</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st4)">I</span><span class="stt">Marketing + Sales</span><span class="sdept">Marketing/Sales</span></div><div class="arrow">→</div></div>
-    <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-success);border-color:var(--p-color-border-success)"><span class="sidx" style="background:var(--st4)">J</span><span class="stt">Đối soát · KPI</span><span class="sdept">Accounting</span></div></div>
+<!-- ===================== FOB ===================== -->
+<div class="dv-panel" data-dvpanel="fob">
+  <div class="board-head"><div><div class="bt">Phát triển sản phẩm · FOB</div><div class="bo">Nhà cung cấp phát triển · 2 gate (chọn mẫu · duyệt nội bộ) · AF chuẩn hóa tài liệu sau duyệt</div></div><span class="bmode">Swim-lane + Node flow</span></div>
+
+  <div class="block">
+    <div class="flowwrap">
+      <div class="swimx" style="--cols:11;">
+        <div class="swimx-row swimx-head">
+          <div class="swimx-lane">Phòng ban \\ Bước</div>
+          <div class="sx-c">01</div><div class="sx-c">02</div><div class="sx-c">03</div><div class="sx-c">04</div><div class="sx-c">05</div><div class="sx-c">06</div><div class="sx-c">07</div><div class="sx-c">08</div><div class="sx-c">09</div><div class="sx-c">10</div><div class="sx-c">11</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st1)"></span>Merchandising / PP</div>
+          <div class="fnode start" style="grid-column:2">Ý tưởng</div>
+          <div class="fnode" style="grid-column:12">Yêu cầu sản xuất</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Design</div>
+          <div class="fnode" style="grid-column:3">Thiết kế phác thảo</div>
+          <div class="fnode" style="grid-column:4">Thiết kế chi tiết</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Purchasing</div>
+          <div class="fnode" data-drawer="wit:factory-quotation" style="grid-column:5;cursor:pointer;">Tìm NCC</div>
+          <div class="fnode" style="grid-column:7">Nhận mẫu</div>
+          <div class="fnode" style="grid-column:9">Thử mẫu nội bộ</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st3)"></span>Supplier / Factory</div>
+          <div class="fnode" data-drawer="wit:sample-order" style="grid-column:6;cursor:pointer;">Chào mẫu</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st3)"></span>Production</div>
+          <div class="fnode gate" data-drawer="wit:sample-review" style="grid-column:8;cursor:pointer;">Chọn mẫu?</div>
+          <div class="fnode gate" data-drawer="wit:sample-review" style="grid-column:10;cursor:pointer;">Duyệt mẫu nội bộ?</div>
+          <div class="fnode explode" data-drawer="wit:product-registration" style="grid-column:12;cursor:pointer;">Tạo mã Product</div>
+        </div>
+        <div class="swimx-row"><div class="swimx-lane"><span class="ld" style="background:var(--st2)"></span>Technical</div>
+          <div class="fnode" style="grid-column:11">Bảng thông số → Nhảy rập → Ban hành TL KT</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:16px;"><span class="ci">⎇</span><div>Cả hai gate (<b>Chọn mẫu</b>, <b>Duyệt mẫu nội bộ</b>) khi "No" đều quay lại <b>Tìm NCC</b> — tìm/đề nghị nhà cung cấp khác chào lại mẫu. Khác với Sản xuất: ở FOB <b>Technical chuẩn hóa tài liệu KT sau khi mẫu đạt</b> (vì nhà cung cấp đã làm rập &amp; mẫu).</div></div>
   </div>
-  <div class="callout magic" style="margin-top:18px;">
-    <span class="ci">◆</span>
-    <div>Điểm nối quan trọng: SKU đã được sinh ở node 14 (trước sản xuất), nên khi hàng nhập kho (bước G) hệ thống chỉ <b>map số lượng vào SKU đã tồn tại</b> — không sinh mã mới. Nhờ vậy sản phẩm có thể mở bán pre-order ngay từ giai đoạn 2.</div>
+
+  <div class="block">
+    <div class="block-head"><h2>Trình tự node</h2><span class="bk-tag">11 node · 2 gate · NCC làm rập &amp; mẫu</span><span class="line"></span></div>
+    <div class="linflow">
+      <div class="linstep"><div class="box" style="border-left:3px solid var(--st1)"><span class="sidx" style="background:var(--st1)">01</span><span class="stt">Ý tưởng</span><span class="sdept">Merchandising</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">02</span><span class="stt">Phác thảo</span><span class="sdept">Design</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">03</span><span class="stt">Thiết kế chi tiết</span><span class="sdept">Design</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">04</span><span class="stt">Tìm NCC</span><span class="sdept">Purchasing</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">05</span><span class="stt">Chào mẫu</span><span class="sdept">Supplier</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">06</span><span class="stt">Nhận mẫu</span><span class="sdept">Purchasing</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">07</span><span class="stt">Gate · Chọn mẫu?</span><span class="sdept">Production</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st3)">08</span><span class="stt">Thử mẫu nội bộ</span><span class="sdept">Purchasing + team</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">09</span><span class="stt">Gate · Duyệt mẫu nội bộ?</span><span class="sdept">Production</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st2)">10</span><span class="stt">Thông số → Nhảy rập → Ban hành TL KT</span><span class="sdept">Technical</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-magic);border-color:var(--p-color-border-magic)"><span class="sidx" style="background:var(--p-color-bg-fill-magic)">11</span><span class="stt">Tạo mã Product ◆</span><span class="sdept">Production · explode</span></div></div>
+    </div>
+    <div class="callout neutral" style="margin-top:14px;font-size:12.5px;"><span class="ci">→</span><div>Sau node 11: <b>Yêu cầu sản xuất</b> → chuyển sang chuỗi Sản xuất → Bán hàng. Ở FOB, nhà cung cấp giao <b>thành phẩm</b> nên không có bước Xuất NPL từ kho AF.</div></div>
+  </div>
+</div>
+
+<!-- ===================== DOWNSTREAM ===================== -->
+<div class="dv-panel" data-dvpanel="down">
+  <div class="board-head"><div><div class="bt">Sản xuất → Bán hàng</div><div class="bo">Chuỗi chung sau "Yêu cầu sản xuất" · điểm khác giữa Sản xuất &amp; FOB được đánh dấu</div></div><span class="bmode">Node flow</span></div>
+
+  <div class="block">
+    <div class="block-head"><h2>Giai đoạn 3 · Sản xuất</h2><span class="line"></span></div>
+    <div class="linflow">
+      <div class="linstep"><div class="box" style="border-left:3px solid var(--st3)"><span class="sidx" style="background:var(--st3)">A</span><span class="stt">Yêu cầu sản xuất</span><span class="sdept">Prod. Planning</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:factory-quotation" style="cursor:pointer;"><span class="sidx" style="background:var(--st3)">B</span><span class="stt">Chào giá Factory</span><span class="sdept">Factory</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:production-order" style="cursor:pointer;"><span class="sidx" style="background:var(--st3)">C</span><span class="stt">Lệnh sản xuất</span><span class="sdept">Production</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:npl-issue" style="cursor:pointer;background:var(--st2-bg);border-style:dashed;"><span class="sidx" style="background:var(--st2)">D</span><span class="stt">Xuất NPL</span><span class="sdept">Warehouse · chỉ Sản xuất</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:production-lot" style="cursor:pointer;"><span class="sidx" style="background:var(--st3)">E</span><span class="stt">Lô sản xuất</span><span class="sdept">Factory / NCC</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:qc-inspection" style="cursor:pointer;background:var(--p-color-bg-surface-caution);border-color:var(--p-color-border-caution)"><span class="sidx" style="background:var(--p-color-yellow-14)">F</span><span class="stt">QC</span><span class="sdept">QC · gate</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:inbound-lot" style="cursor:pointer;"><span class="sidx" style="background:var(--st3)">G</span><span class="stt">Nhập kho (map SKU)</span><span class="sdept">Warehouse</span></div></div>
+    </div>
+    <div class="callout info" style="margin-top:14px;font-size:12.5px;"><span class="ci">◆</span><div><b>Khác biệt sản xuất:</b> nhánh <b>Sản xuất</b> — AF xuất NPL (bước D) cho factory gia công CMT. Nhánh <b>FOB</b> — bỏ bước D, nhà cung cấp giao thẳng thành phẩm, QC kiểm trên hàng FOB nhập về.</div></div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><h2>Giai đoạn 4 · Bán hàng</h2><span class="line"></span></div>
+    <div class="linflow">
+      <div class="linstep"><div class="box" style="border-left:3px solid var(--st4)"><span class="sidx" style="background:var(--st4)">H</span><span class="stt">Phân bổ cửa hàng</span><span class="sdept">Prod. Planning</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:marketing-campaign" style="cursor:pointer;"><span class="sidx" style="background:var(--st4)">I</span><span class="stt">Chiến dịch Marketing</span><span class="sdept">Marketing</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" data-drawer="wit:sales-order" style="cursor:pointer;"><span class="sidx" style="background:var(--st4)">J</span><span class="stt">Bán online + offline</span><span class="sdept">Sales</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box" style="background:var(--p-color-bg-surface-success);border-color:var(--p-color-border-success)"><span class="sidx" style="background:var(--st4)">K</span><span class="stt">Khách dùng SP</span><span class="sdept">Khách hàng</span></div><div class="arrow">→</div></div>
+      <div class="linstep"><div class="box"><span class="sidx" style="background:var(--st4)">L</span><span class="stt">Đối soát</span><span class="sdept">Accounting</span></div></div>
+    </div>
   </div>
 </div>

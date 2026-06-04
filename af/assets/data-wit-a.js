@@ -49,10 +49,11 @@ Object.assign(window.MEEGLE_DATA.wit, {
   },
 
   'style': {
-    seq:'03', name:'Mẫu thiết kế', code:'style', stage:'s2', badge:{t:'tmpl',label:'2 template'}, wf:'16 node',
-    purpose:'Xương sống của toàn hệ thống. Template "New Design" (16 node) và "Restock" (6 node). Link ngược về Product Brief gốc. Mọi WIT con (NPL, rập, mẫu, tech doc, SKU…) đều treo dưới Style.',
+    seq:'03', name:'Mẫu thiết kế', code:'style', stage:'s2', badge:{t:'tmpl',label:'3 template'}, wf:'Sản xuất 14 / FOB 11',
+    purpose:'Xương sống của toàn hệ thống. Trường development_mode chọn 1 trong 3 template: "Sản xuất" (14 node — AF làm chủ rập, mẫu, NPL; 2 gate duyệt mẫu gốc & size set), "FOB" (11 node — nhà cung cấp chào mẫu & làm rập; 2 gate chọn mẫu & duyệt nội bộ), và "Restock" (6 node). Cả hai luồng phát triển hội tụ tại "Tạo mã Product". Mọi WIT con treo dưới Style.',
     fields:[
       ['style_code','Text','y','Theo quy tắc AF'],
+      ['development_mode','Single select','y','Sản xuất (in-house) / FOB / Restock — quyết định template workflow'],
       ['product_brief','Associated','y','MỚI — link ngược brief gốc'],
       ['designer','Person','y','Người thiết kế'],
       ['design_lead','Person','y','Chị Diễm Chi'],
@@ -65,23 +66,22 @@ Object.assign(window.MEEGLE_DATA.wit, {
       ['retail_price','Currency','y','Giá bán'],
       ['margin_pct','Formula','n','= (retail−cogs)/retail']
     ],
+    nodeNote:'Dưới đây là template "Sản xuất" (14 node). Template "FOB" (11 node) xem tab Workflow · nhánh B.',
     nodes:[
-      {n:1,title:'Brief & Ý tưởng',owner:'Designer',tasks:['Đọc Product Brief','Research trend','Đề xuất hướng thiết kế']},
+      {n:1,title:'Ý tưởng',owner:'Merchandising / PP',tasks:['Nhận Product Brief đã duyệt','Inherit category, segment, price range']},
       {n:2,title:'Thiết kế phác thảo',owner:'Designer',tasks:['Flat sketch ≥3 phương án','Color direction','Suggest material'],btns:[{k:'ok',t:'Gửi Diễm Chi duyệt'}]},
       {n:3,title:'Thiết kế chi tiết',owner:'Designer',tasks:['Detail front/back/side','Render colorway','Spec sơ bộ cho Purchasing']},
-      {n:4,title:'Kiểm tra NPL',owner:'Purchasing',tasks:['Check tồn NPL','Đối chiếu BOM','Gate: đủ mới qua'],auto:'A_ST1 → tạo NPL Check'},
+      {n:4,title:'Kiểm tra NPL?',owner:'Purchasing',gate:true,tasks:['Check tồn NPL','Đối chiếu BOM','Gate: đủ mới qua · Thiếu → Phát triển/thay thế'],auto:'A_ST1 → tạo NPL Check'},
       {n:5,title:'Làm rập mẫu gốc',owner:'Technical',tasks:['Vẽ rập base size','Tính định mức','Soạn bảng thông số'],auto:'A_ST2 → tạo Pattern Making'},
       {n:6,title:'May mẫu gốc',owner:'Sample Room',tasks:['Chuẩn bị NPL','Cắt → may → hoàn thiện','Chụp ảnh'],auto:'A_ST3 → tạo Sample Order'},
-      {n:7,title:'Duyệt mẫu gốc',owner:'Diễm Chi',gate:true,tasks:['Fitting / mannequin','Đo kiểm thông số','Đánh giá tổng thể'],auto:'A_ST4 → Sample Review',btns:[{k:'ok',t:'Đạt → N8'},{k:'fix',t:'Sửa → N5'},{k:'kill',t:'Hủy SP'}]},
-      {n:8,title:'Thử mẫu nội bộ',owner:'PP+Merch+Design',tasks:['Trưng bày mẫu','Đánh giá marketability','Confirm target qty']},
-      {n:9,title:'Duyệt nội bộ',owner:'Calvin',gate:true,tasks:['Go/no-go thương mại'],auto:'A_ST5 → Sample Review',btns:[{k:'ok',t:'Chọn → N10'},{k:'fix',t:'On-hold'},{k:'kill',t:'Hủy SP'}]},
-      {n:10,title:'Nhảy rập size set',owner:'Technical',tasks:['Nhảy rập base → full run','Verify grading rule']},
-      {n:11,title:'May size set',owner:'Sample Room',tasks:['May đủ size run','Kiểm tra từng size'],auto:'A_ST6 → Sample Order'},
-      {n:12,title:'Duyệt size set',owner:'Diễm Chi+Tech',gate:true,tasks:['Grading đúng qua size?','Mọi điểm đo phải Pass'],auto:'A_ST7 → Sample Review',btns:[{k:'ok',t:'Đạt → N13'},{k:'fix',t:'Sửa → N10'},{k:'kill',t:'Hủy'}]},
-      {n:13,title:'Ban hành Tài liệu KT',owner:'Technical',tasks:['Compile spec final','Construction guide','Hoàn tất BOM','Lock thiết kế'],auto:'A_ST8 → tạo Tech Doc'},
-      {n:14,title:'Tạo mã Product',owner:'Production',expl:true,tasks:['Confirm color/size final','Generate SKU matrix','Đẩy POS'],auto:'A_ST9 → Product Registration · A_PR1 → SKU'},
-      {n:15,title:'Yêu cầu sản xuất',owner:'Production Planning',tasks:['Sản lượng final','Breakdown color×size','Chọn Factory'],auto:'A_ST10 → Production Request'},
-      {n:16,title:'Closed — Sẵn sàng bán',owner:'Auto',tasks:['Auto khi PO hoàn tất + Inbound nhập kho']}
+      {n:7,title:'Thử mẫu nội bộ',owner:'Design + PP + Merch',tasks:['Fitting / mannequin','Đánh giá tổng thể trước khi trình duyệt']},
+      {n:8,title:'Duyệt mẫu gốc?',owner:'Diễm Chi',gate:true,tasks:['Đo kiểm thông số','Đánh giá form & tính thương mại','Escalate Calvin nếu >3 vòng'],auto:'A_ST4 → Sample Review',btns:[{k:'ok',t:'Đạt → N9'},{k:'fix',t:'Sửa → N5'},{k:'kill',t:'Hủy SP'}]},
+      {n:9,title:'Nhảy rập size set',owner:'Technical',tasks:['Nhảy rập base → full run','Verify grading rule']},
+      {n:10,title:'May size set mẫu gốc',owner:'Sample Room',tasks:['May đủ size run','Kiểm tra từng size'],auto:'A_ST6 → Sample Order'},
+      {n:11,title:'Thử size set mẫu gốc',owner:'Technical + Sample Room',tasks:['Mặc thử / đo từng size','Kiểm grading thực tế']},
+      {n:12,title:'Duyệt size set?',owner:'Diễm Chi',gate:true,tasks:['Grading đúng qua size?','Mọi điểm đo phải Pass'],auto:'A_ST7 → Sample Review',btns:[{k:'ok',t:'Đạt → N13'},{k:'fix',t:'Sửa → N9'},{k:'kill',t:'Hủy SP'}]},
+      {n:13,title:'Ban hành Tài liệu KT sản xuất',owner:'Technical',tasks:['Compile spec final','Construction guide','Hoàn tất BOM','Lock thiết kế'],auto:'A_ST8 → tạo Tech Doc'},
+      {n:14,title:'Tạo mã Product → Yêu cầu sản xuất',owner:'Production',expl:true,tasks:['Generate SKU matrix','Đẩy POS','Lập Production Request'],auto:'A_ST9 → Product Registration · A_PR1 → SKU · A_ST10 → Production Request'}
     ],
     related:[
       {t:'wit',id:'product-brief',tag:'cha',kind:'Thuộc Product Brief (R2)'},
