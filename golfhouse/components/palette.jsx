@@ -11,8 +11,8 @@ function CommandPalette({ onClose, setView, open }) {
   const items = React.useMemo(() => {
     const list = [];
     const tabs = [
-      ["plain", "Dễ hiểu", "Tab"], ["mission", "Mission Control", "Tab"], ["org", "Tổ chức", "Tab"],
-      ["big", "Bản đồ tổng", "Tab"], ["board", "Program Board", "Tab"], ["timeline", "Timeline PI", "Tab"], ["playbook", "Playbook vận hành", "Tab"]
+      ["plain", "Dễ hiểu", "Tab"], ["ceo", "CEO Cockpit", "Tab"], ["mission", "Mission Control", "Tab"], ["org", "Tổ chức", "Tab"],
+      ["big", "Bản đồ tổng", "Tab"], ["board", "Program Board", "Tab"], ["timeline", "Timeline PI", "Tab"], ["playbook", "Playbook vận hành", "Tab"], ["finance", "Tài chính", "Tab"], ["library", "Thư viện", "Tab"]
     ];
     tabs.forEach(([id, label, k]) => list.push({ kind: k, label, hint: "Mở tab", color: "var(--cyan)", run: () => { setView(id); onClose(); } }));
     G.teams.forEach(t => list.push({ kind: "Team", label: t.id + " · " + t.name, hint: t.po, color: vsColor(t.vs), run: () => { open({ type: "team", id: t.id }); onClose(); } }));
@@ -24,6 +24,15 @@ function CommandPalette({ onClose, setView, open }) {
       list.push({ kind: "Ô việc", label: name, hint: t.id + " · " + s, color: vsColor(t.vs), run: () => { setView("board"); open({ type: "feat", team: t.id, sprint: s }); onClose(); } });
     }));
     G.sprints.forEach(s => list.push({ kind: "Sprint", label: s.label + " · " + s.title, hint: s.tminus, color: "var(--ink-dim)", run: () => { setView("timeline"); open({ type: "sprint", id: s.id }); onClose(); } }));
+    // library resources
+    (G.library ? G.library.collections : []).forEach(c => {
+      const hue = `oklch(0.78 0.13 ${c.hue})`;
+      if (c.id === "directory") {
+        c.groups.forEach(grp => grp.items.forEach(it => list.push({ kind: "Danh bạ", label: it.t, hint: it.org, color: hue, run: () => { setView("library"); open({ type: "res", item: { ...it, col: c.id, kind: "contact", group: grp.g } }); onClose(); } })));
+      } else {
+        c.items.forEach(it => list.push({ kind: "Tài nguyên", label: it.t, hint: it.own, color: hue, run: () => { setView("library"); open({ type: "res", item: { ...it, col: c.id, kind: "doc" } }); onClose(); } }));
+      }
+    });
     return list;
   }, []);
 

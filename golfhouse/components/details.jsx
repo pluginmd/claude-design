@@ -13,6 +13,22 @@ function Bullets({ items, accent }) {
   );
 }
 
+// Cross-link chips: jump to team / business framework / functional area / tab
+function LinkChips({ team, biz, fa, sprint, finance, accent }) {
+  const G = window.GOLF;
+  const chips = [];
+  const go = (view, sel) => () => window.__nav ? window.__nav(view, sel) : (window.__open && window.__open(sel));
+  if (team) { const t = G.teams.find(x => x.id === team); if (t) chips.push({ label: "▥ Team " + t.id + " · " + t.name, on: go(null, { type: "team", id: team }) }); }
+  if (biz) { const b = (G.business || []).find(x => x.id === biz); if (b) chips.push({ label: "◆ Khung giá trị · " + b.short, on: go("playbook", { type: "biz", id: biz }) }); }
+  if (fa) { const f = (G.functionalAreas || []).find(x => x.id === fa); if (f) chips.push({ label: "⚙ " + f.name, on: go("playbook", { type: "fa", id: fa }) }); }
+  if (sprint) { const s = G.sprints.find(x => x.id === sprint); if (s) chips.push({ label: "◷ " + s.label, on: go("timeline", { type: "sprint", id: sprint }) }); }
+  if (finance) chips.push({ label: "₫ Mở tab Tài chính (VLF2026)", on: go("finance", null) });
+  if (!chips.length) return null;
+  return React.createElement("div", { className: "dsec" },
+    React.createElement("h4", { className: "dsec-t", style: accent ? { color: accent, borderColor: accent } : undefined }, "Liên kết — đi tới"),
+    React.createElement("div", { className: "linkres" }, chips.map((c, i) => React.createElement("button", { key: i, className: "linkres-chip", "data-no-pan": true, onClick: c.on }, c.label))));
+}
+
 // --- per-type renderers --------------------------------------
 function DetailVS(vs) {
   const col = vsColor(vs.id);
@@ -286,7 +302,72 @@ function DetailBusiness(b) {
     // risks
     React.createElement("div", { className: "dsec" }, sub("⚠", "Rủi ro chính", "var(--warn)"),
       React.createElement("div", { className: "biz-risk" },
-        b.risks.map((r, i) => React.createElement("div", { key: i, className: "brisk" }, "✕ " + r))))
+        b.risks.map((r, i) => React.createElement("div", { key: i, className: "brisk" }, "✕ " + r)))),
+    (b.id === "BIZ3" || b.id === "BIZ6") && React.createElement(LinkChips, { finance: true, accent: c })
+  );
+}
+
+function DetailRes(item) {
+  const L = window.GOLF.library;
+  const isContact = item.kind === "contact";
+  const acc = L.ACCESS[item.access];
+  const docst = !isContact && L.DOCST[item.st];
+  const linkedTeam = item.team && item.team !== "—" ? window.GOLF.teams.find(t => t.id === item.team) : null;
+  const det = L.detailFor ? L.detailFor(item, item.col, isContact ? item.group : null) : {};
+  const accent = isContact ? "oklch(0.78 0.13 230)" : (docst ? docst.c : "var(--cyan)");
+  const sub = (t) => React.createElement("h4", { className: "dsec-t", style: { color: accent, borderColor: accent } }, t);
+  const openRes = (sel) => window.__open && window.__open(sel);
+
+  if (isContact) {
+    return React.createElement("div", null,
+      React.createElement("div", { className: "res-tags" }, acc && React.createElement("span", { className: "lib-acc", style: { color: acc.c, borderColor: acc.c } }, "🔒 " + acc.l)),
+      React.createElement("div", { className: "kv" },
+        React.createElement("div", { style: { gridColumn: "1/-1" } }, React.createElement("span", null, "Tổ chức"), React.createElement("b", null, item.org)),
+        React.createElement("div", null, React.createElement("span", null, "Kênh liên hệ"), React.createElement("b", null, item.ch)),
+        React.createElement("div", null, React.createElement("span", null, "SLA phản hồi"), React.createElement("b", null, item.sla)),
+        React.createElement("div", null, React.createElement("span", null, "Giờ trực"), React.createElement("b", null, det.hours)),
+        React.createElement("div", null, React.createElement("span", null, "Vị trí"), React.createElement("b", null, det.loc))),
+      React.createElement("div", { className: "dsec" }, sub("Đầu mối dự phòng & escalation"),
+        React.createElement("div", { className: "esc-row" }, React.createElement("span", { className: "esc-k" }, "Backup"), React.createElement("span", null, det.backup)),
+        React.createElement("div", { className: "esc-flow" }, det.escalation)),
+      linkedTeam && React.createElement("div", { className: "dsec" },
+        React.createElement("button", { className: "ctxbtn", "data-no-pan": true, onClick: () => openRes({ type: "team", id: linkedTeam.id }) }, "Mở team " + linkedTeam.id + " · " + linkedTeam.name + " →")),
+      React.createElement("div", { className: "ssot-note" }, "◈ Nguồn chuẩn (SSOT) — escalation theo đường này, không bỏ qua cấp.")
+    );
+  }
+
+  return React.createElement("div", null,
+    item.note && React.createElement("p", { className: "dlede" }, item.note),
+    React.createElement("div", { className: "res-tags" },
+      docst && React.createElement("span", { className: "lib-st", style: { background: docst.c } }, docst.l),
+      acc && React.createElement("span", { className: "lib-acc", style: { color: acc.c, borderColor: acc.c } }, "🔒 " + acc.l),
+      item.count && React.createElement("span", { className: "lib-acc", style: { color: "var(--ink-dim)", borderColor: "var(--edge)" } }, item.count)),
+    // governance grid
+    React.createElement("div", { className: "kv" },
+      React.createElement("div", null, React.createElement("span", null, "Chủ sở hữu"), React.createElement("b", null, item.own)),
+      React.createElement("div", null, React.createElement("span", null, "Phiên bản"), React.createElement("b", null, item.v)),
+      React.createElement("div", null, React.createElement("span", null, "Cập nhật"), React.createElement("b", null, item.upd)),
+      React.createElement("div", null, React.createElement("span", null, "Truy cập"), React.createElement("b", { style: { color: acc.c } }, acc.l))),
+    React.createElement("div", { className: "dsec" }, sub("Quản trị tài nguyên"),
+      React.createElement("div", { className: "gov-grid" },
+        React.createElement("div", { className: "govg" }, React.createElement("span", null, "Nơi lưu (SSOT)"), React.createElement("b", null, det.loc)),
+        React.createElement("div", { className: "govg" }, React.createElement("span", null, "Định dạng"), React.createElement("b", null, det.fmt)),
+        React.createElement("div", { className: "govg" }, React.createElement("span", null, "Nhịp review"), React.createElement("b", null, det.review)),
+        React.createElement("div", { className: "govg" }, React.createElement("span", null, "Lưu trữ"), React.createElement("b", null, det.retention)))),
+    // contributors
+    det.contrib && det.contrib.length > 0 && React.createElement("div", { className: "dsec" }, sub("Người đóng góp"),
+      React.createElement("div", { className: "contrib" }, det.contrib.map((c, i) => React.createElement("div", { key: i, className: "contrib-row" }, React.createElement("i", null), c)))),
+    // version history timeline
+    det.history && det.history.length > 0 && React.createElement("div", { className: "dsec" }, sub("Lịch sử phiên bản"),
+      React.createElement("div", { className: "vhist" }, det.history.map((h, i) => React.createElement("div", { key: i, className: "vh-row" + (i === det.history.length - 1 ? " vh-cur" : "") },
+        React.createElement("span", { className: "vh-v" }, h[0]),
+        React.createElement("div", { className: "vh-body" }, React.createElement("b", null, h[2]), React.createElement("em", null, h[1])))))),
+    // linked resources
+    det.linked && det.linked.length > 0 && React.createElement("div", { className: "dsec" }, sub("Tài nguyên liên kết"),
+      React.createElement("div", { className: "linkres" }, det.linked.map((t, i) => React.createElement("button", { key: i, className: "linkres-chip", "data-no-pan": true, onClick: () => { const f = L.findByTitle && L.findByTitle(t); if (f) openRes({ type: "res", item: f.item }); } }, "▤ " + t)))),
+    linkedTeam && React.createElement("div", { className: "dsec" },
+      React.createElement("button", { className: "ctxbtn", "data-no-pan": true, onClick: () => openRes({ type: "team", id: linkedTeam.id }) }, "Mở team phụ trách " + linkedTeam.id + " · " + linkedTeam.name + " →")),
+    React.createElement("div", { className: "ssot-note" }, "◈ Đây là nguồn chuẩn (SSOT). Mọi bản sao khác chỉ để tham khảo — không chỉnh sửa ngoài bản này.")
   );
 }
 
@@ -303,6 +384,7 @@ function Drawer({ sel, onClose, open, live, setStatus }) {
     const h = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", h); return () => window.removeEventListener("keydown", h);
   }, [onClose]);
+  useEffect(() => { window.__open = open; }, [open]);
   if (!sel) return null;
   let title = "", tag = "", accent = "var(--line)", body = null;
   const G = window.GOLF;
@@ -326,6 +408,27 @@ function Drawer({ sel, onClose, open, live, setStatus }) {
   else if (sel.type === "role") { const o = G.org || window.GOLF_ORG; const r = o.roles.find(x => x.id === sel.id); title = r.title; tag = "Vai trò · " + r.level; accent = `oklch(0.78 0.13 ${r.hue})`; body = DetailRole(r); }
   else if (sel.type === "biz") { const b = (G.business || window.GOLF_BUSINESS).find(x => x.id === sel.id); title = b.name; tag = "Khung giá trị · " + b.short; accent = `oklch(0.78 0.13 ${b.hue})`; body = DetailBusiness(b); }
   else if (sel.type === "feat") { const t = G.teams.find(x => x.id === sel.team); const lbl = (G.boardCells[sel.team] && G.boardCells[sel.team][sel.sprint]) || ""; const sp = G.sprints.find(x => x.id === sel.sprint); title = lbl; tag = sel.team + " · " + t.name + " — " + (sp ? sp.label : sel.sprint); accent = vsColor(t.vs); body = DetailFeat(sel.team, sel.sprint, open, live, setStatus); }
+  else if (sel.type === "res") { const it = sel.item; const L = G.library; title = it.t; tag = (it.kind === "contact" ? "Danh bạ · " + it.group : "Tài nguyên · " + (L.collections.find(c => c.id === it.col) || {}).name); accent = it.kind === "contact" ? "oklch(0.78 0.13 230)" : (L.DOCST[it.st] ? L.DOCST[it.st].c : "var(--cyan)"); body = DetailRes(it); }
+  else if (sel.type === "fincost") { const F = window.GOLF_FINANCE; const bd = F.budgetDetail.find(b => b.cat === sel.name); title = sel.name; tag = "Chi phí · chi tiết line-item"; accent = "oklch(0.78 0.14 75)"; body = React.createElement("div", null,
+    React.createElement("p", { className: "dlede" }, "Tổng hạng mục (Base Case): " + (bd.total / 1000).toFixed(2) + " tỷ VND. Mỗi dòng = tổng × tỷ trọng nội bộ."),
+    React.createElement("div", { className: "fdet" }, bd.lines.map((l, i) => React.createElement("div", { key: i, className: "fdet-row" },
+      React.createElement("span", { className: "fdet-n" }, l[0]),
+      React.createElement("span", { className: "fdet-w" }, (l[1] * 100).toFixed(0) + "%"),
+      React.createElement("b", null, (l[2] / 1000).toFixed(2) + " tỷ"),
+      l[3] && React.createElement("em", null, l[3])))),
+    (function () { const lk = F.links.cost[sel.name] || {}; return React.createElement(LinkChips, { team: lk.team, biz: lk.biz, fa: lk.fa, accent: accent }); })());
+  }
+  else if (sel.type === "finspon") { const F = window.GOLF_FINANCE; const t = F.sponsorship.tiers.find(x => x.tier === sel.tier); title = t.tier; tag = "Tài trợ · " + t.range + " · " + t.slots + " slot"; accent = "oklch(0.74 0.14 150)"; body = React.createElement("div", null,
+    React.createElement("div", { className: "kv" },
+      React.createElement("div", null, React.createElement("span", null, "Giá gói (range)"), React.createElement("b", null, t.range)),
+      React.createElement("div", null, React.createElement("span", null, "Số slot"), React.createElement("b", null, t.slots)),
+      React.createElement("div", null, React.createElement("span", null, "Tỷ lệ commit"), React.createElement("b", null, (t.commit * 100).toFixed(0) + "%")),
+      React.createElement("div", null, React.createElement("span", null, "Pipeline (3×)"), React.createElement("b", null, (t.pipeline / 1000).toFixed(1) + " tỷ"))),
+    React.createElement("div", { className: "dsec" }, React.createElement("h4", { className: "dsec-t", style: { color: accent, borderColor: accent } }, "Target theo kịch bản"),
+      React.createElement("div", { className: "fdet" }, ["Conservative", "Base Case", "Aggressive"].map(s => React.createElement("div", { key: s, className: "fdet-row" },
+        React.createElement("span", { className: "fdet-n" }, s), React.createElement("b", null, (t.v[s] / 1000).toFixed(2) + " tỷ"))))),
+    React.createElement(LinkChips, { team: F.links.revenue.team, biz: F.links.revenue.biz, fa: F.links.revenue.fa, accent: accent }));
+  }
   else if (sel.type === "custom") { title = sel.title; tag = sel.tag; body = sel.body; }
 
   return React.createElement(React.Fragment, null,

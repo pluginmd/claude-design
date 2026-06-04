@@ -4,12 +4,15 @@
    ============================================================ */
 const VIEWS = [
   { id: "plain", label: "Dễ hiểu", sub: "Bản dẫn nhập" },
+  { id: "ceo", label: "CEO Cockpit", sub: "Tổng quan hợp nhất" },
   { id: "mission", label: "Mission Control", sub: "Dashboard điều hành" },
   { id: "org", label: "Tổ chức", sub: "Org · vai trò · OKR" },
   { id: "big", label: "Bản đồ tổng", sub: "Tháp 4 tầng × 4 lớp" },
   { id: "board", label: "Program Board", sub: "10 Sprint × 8 Team" },
   { id: "timeline", label: "Timeline PI", sub: "10 tuần · ceremony" },
-  { id: "playbook", label: "Playbook vận hành", sub: "FA · pha · pattern · $" }
+  { id: "playbook", label: "Playbook vận hành", sub: "FA · pha · pattern · $" },
+  { id: "finance", label: "Tài chính", sub: "VLF2026 · kịch bản · cashflow" },
+  { id: "library", label: "Thư viện", sub: "SSOT · danh bạ · file" }
 ];
 
 // ---- deep-link encode/decode -------------------------------
@@ -43,6 +46,10 @@ function App() {
   const [statusVer, setStatusVer] = useState(0);
   const [tour, setTour] = useState(false);
   const open = useCallback((s) => setSel(s), []);
+
+  // cross-link navigation: jump to a tab AND optionally open a drawer
+  const nav = useCallback((v, s) => { if (v) setView(v); setSel(s || null); }, []);
+  useEffect(() => { window.__nav = nav; window.__open = open; }, [nav, open]);
 
   // first-visit welcome
   useEffect(() => {
@@ -134,12 +141,15 @@ function App() {
 
     React.createElement("main", { className: "stage" + (!(showVSFilter || showTeamFilter || showSprintFilter) ? " no-filter" : "") },
       view === "plain" && React.createElement(PlainView, { open, goView: setView }),
+      view === "ceo" && React.createElement(CEOCockpit, { open, goView: setView }),
       view === "mission" && React.createElement(MissionControl, { open, goView: setView, statusVer }),
       view === "org" && React.createElement(OrgView, { open }),
       view === "big" && React.createElement(BigPicture, { filter, open }),
       view === "board" && React.createElement(ProgramBoard, { filter, open, live, statusVer }),
       view === "timeline" && React.createElement(Timeline, { filter, open }),
-      view === "playbook" && React.createElement(Playbook, { open })
+      view === "playbook" && React.createElement(Playbook, { open }),
+      view === "finance" && React.createElement(FinanceView, { open }),
+      view === "library" && React.createElement(LibraryView, { open })
     ),
 
     (view === "big" || view === "board") && React.createElement("div", { className: "legend" },

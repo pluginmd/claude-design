@@ -448,12 +448,15 @@
       { safe: "SSOT", vi: "Một nguồn dữ liệu chuẩn", g: "Mọi người nhìn cùng một bảng thật, không ai dùng file riêng." },
       { safe: "Value Stream", vi: "Lớp sản phẩm tạo giá trị", g: "4 'sản phẩm' của giải: thể thao, truyền hình, thương mại, tài sản chiến lược." }
     ],
-    // cách đọc 4 tab
+    // cách đọc các tab còn lại
     guide: [
+      { view: "mission", t: "Mission Control", d: "Phòng điều hành: sức khoẻ dự án, chỗ nào đang tắc/ổn, nguồn lực, rủi ro. Có 'cỗ máy thời gian' tua trạng thái theo từng tuần." },
+      { view: "org", t: "Tổ chức", d: "Quy mô bộ máy, sơ đồ tổ chức, ai làm gì (vai trò), các bên liên quan, mục tiêu (OKR) và bảng phân trách nhiệm RACI." },
       { view: "big", t: "Bản đồ tổng", d: "Nhìn toàn cảnh: ai ở trên, ai ở dưới. Bấm vào bất kỳ ô nào để đọc chi tiết." },
-      { view: "board", t: "Program Board", d: "Lịch 10 tuần × 8 tổ. Đường nối = việc phụ thuộc nhau. Rê chuột lên một khối để soi liên kết." },
-      { view: "timeline", t: "Timeline", d: "Dòng thời gian từ chuẩn bị → tuần giải → đóng dự án, kèm nhịp họp tăng dần." },
-      { view: "playbook", t: "Playbook vận hành", d: "Phần 'chân núi': tiền nong, đối tác, an toàn, sự kiện bên lề, các bài học." }
+      { view: "board", t: "Program Board", d: "Lịch 10 tuần × 8 tổ. Đường nối = việc phụ thuộc nhau. Rê chuột lên một khối để soi liên kết, hoặc mô phỏng 'việc trễ'." },
+      { view: "timeline", t: "Timeline", d: "Dòng thời gian từ chuẩn bị → tuần giải → đóng dự án, kèm nhịp họp tăng dần và kịch bản một ngày thi đấu." },
+      { view: "playbook", t: "Playbook vận hành", d: "Phần 'chân núi': 12 khung giá trị doanh nghiệp, tiền nong, đối tác, an toàn, sự kiện bên lề, bài học." },
+      { view: "library", t: "Thư viện", d: "Kho tài nguyên chuẩn (SSOT): danh bạ liên lạc, hợp đồng, template, tri thức, media-brand, báo cáo." }
     ],
     principles: [
       { t: "Tất cả hội tụ về MỘT ngày", d: "Khác mọi dự án thường, deadline là ngày khai mạc — bất di bất dịch. Mọi việc đếm ngược về đó." },
@@ -561,7 +564,8 @@
       { id: "exec", name: "Steering", icon: "♚", desc: "Cấp cao: tiền · license · rủi ro · sẵn sàng" },
       { id: "ops", name: "Vận hành", icon: "⚙", desc: "Blocker · phụ thuộc · critical path · team" },
       { id: "resource", name: "Nguồn lực", icon: "◷", desc: "Nhân lực · capacity · thiếu hụt" },
-      { id: "flow", name: "Dòng chảy", icon: "⇄", desc: "Trạng thái · pending · huỷ · alignment" }
+      { id: "flow", name: "Dòng chảy", icon: "⇄", desc: "Trạng thái · pending · huỷ · alignment" },
+      { id: "finance", name: "Tài chính", icon: "₫", desc: "Ngân sách · dòng tiền · tài trợ · vốn lưu động" }
     ],
     teamMeta: {
       T1: { velPlan: 34, velDone: 21, note: "Scoring spec đã xong; đang lập course setup plan." },

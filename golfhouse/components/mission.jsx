@@ -63,6 +63,21 @@ function MissionControl({ open, goView, statusVer }) {
   const maxVel = Math.max(...C.velocityBySprint.map(v => v.v));
   const sevMeta = { high: { l: "CAO", c: "oklch(0.64 0.20 25)" }, med: { l: "TB", c: "oklch(0.80 0.14 75)" }, low: { l: "THẤP", c: "var(--ink-faint)" } };
 
+  // FINANCE integration (VLF2026 Base Case) — đồng bộ với sprint time T
+  const FN = window.GOLF_FINANCE;
+  const fk = FN ? FN.kpi["Base Case"] : null;
+  const fty = (m, d = 1) => (m / 1000).toLocaleString("vi-VN", { minimumFractionDigits: d, maximumFractionDigits: d });
+  // burn theo tiến độ sprint (T/10) — committed vs cash-out gần đúng
+  const burnPct = Math.min(Math.round(T * 8.7), 100);
+  const sponSecured = FN ? FN.sponsorship.tiers.reduce((a, t) => a + t.v["Base Case"] * t.commit, 0) : 0;
+  const sponTarget = FN ? FN.sponsorship.tiers.reduce((a, t) => a + t.v["Base Case"], 0) : 0;
+  // cảnh báo tài chính theo thời điểm
+  const finAlerts = FN ? [
+    { sev: T >= 9 ? "high" : "med", t: "Cú chi prize fund 14,3 tỷ tại T-1 (tuần 07/26)", d: "Cần hạn mức vốn lưu động sẵn sàng trước khi tới đáy dòng tiền." },
+    { sev: sponSecured / sponTarget < 0.7 ? "high" : "med", t: "Tài trợ đã chốt " + Math.round(sponSecured / sponTarget * 100) + "% mục tiêu", d: "Anchor Title Sponsor sớm — 35% doanh thu phụ thuộc tier này." },
+    { sev: "med", t: "Deposit vendor " + fty(FN.vendor.deposit) + " tỷ khi ký HĐ", d: "Tạm ứng 40-50% nhiều gói tạo áp lực dòng tiền sớm." }
+  ] : [];
+
   // live counts at time T
   const allCells = [];
   G.teams.forEach(t => Object.keys(G.boardCells[t.id]).forEach(s => allCells.push(stAt(t.id, s))));
@@ -275,12 +290,33 @@ function MissionControl({ open, goView, statusVer }) {
       ),
 
       // BUDGET BY VS
-      show("exec") && React.createElement(Panel, { title: "Ngân sách đã dùng theo Value Stream", cls: "span1" },
+      show("exec", "finance") && React.createElement(Panel, { title: "Ngân sách đã dùng theo Value Stream", link: "Mở tab Tài chính →", onLink: () => goView("finance"), cls: "span1" },
         React.createElement("div", { className: "budg" },
           C.budgetByVS.map((b, i) => React.createElement("div", { key: i, className: "budg-row" },
             React.createElement("span", { className: "budg-vs", style: { color: vsColor(b.vs) } }, b.vs),
             React.createElement("div", { className: "budg-bar" }, React.createElement("div", { className: "budg-f", style: { width: b.pct + "%", background: vsColor(b.vs) } })),
             React.createElement("span", { className: "budg-pct" }, b.pct + "%"))))
+      ),
+
+      // FINANCE — tình hình tài chính (VLF2026)
+      FN && show("finance") && React.createElement(Panel, { title: "Tình hình tài chính — VLF2026 (Base Case)", link: "Mở tab Tài chính →", onLink: () => goView("finance"), tag: "tỷ VND", cls: "span2" },
+        React.createElement("div", { className: "finmc-kpis" },
+          [["Tổng ngân sách", fty(fk.budget), "chi phí"], ["Tổng doanh thu", fty(fk.revenue), "mục tiêu"], ["Lợi nhuận ròng", fty(fk.net), "coverage " + fk.coverage.toFixed(2) + "×"], ["Đỉnh vốn lưu động", fty(fk.peakWC, 1), "facility 3,2 tỷ"]].map((x, i) =>
+            React.createElement("div", { key: i, className: "finmc-kpi" }, React.createElement("span", null, x[0]), React.createElement("b", null, x[1], React.createElement("em", null, " tỷ")), React.createElement("i", null, x[2])))),
+        React.createElement("div", { className: "finmc-burn" },
+          React.createElement("div", { className: "finmc-burn-h" }, React.createElement("span", null, "Ngân sách đã cam kết/giải ngân (ước theo tiến độ)"), React.createElement("b", null, burnPct + "%")),
+          React.createElement("div", { className: "finmc-track" }, React.createElement("div", { className: "finmc-fill", style: { width: burnPct + "%" } }))),
+        React.createElement("div", { className: "finmc-burn" },
+          React.createElement("div", { className: "finmc-burn-h" }, React.createElement("span", null, "Tài trợ đã chốt vs mục tiêu"), React.createElement("b", null, fty(sponSecured) + " / " + fty(sponTarget) + " tỷ")),
+          React.createElement("div", { className: "finmc-track" }, React.createElement("div", { className: "finmc-fill spon", style: { width: (sponSecured / sponTarget * 100) + "%" } })))
+      ),
+
+      // FINANCE — cảnh báo dòng tiền
+      FN && show("finance", "exec") && React.createElement(Panel, { title: "Cảnh báo tài chính & dòng tiền", tag: finAlerts.length + " mục", cls: "span1" },
+        React.createElement("div", { className: "finmc-alerts" },
+          finAlerts.map((a, i) => React.createElement("div", { key: i, className: "finmc-alert" },
+            React.createElement("span", { className: "finmc-asev", style: { background: sevMeta[a.sev].c } }, sevMeta[a.sev].l),
+            React.createElement("div", null, React.createElement("b", null, a.t), React.createElement("p", null, a.d)))))
       ),
 
       // MILESTONES

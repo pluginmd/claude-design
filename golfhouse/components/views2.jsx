@@ -141,6 +141,7 @@ function Playbook({ open }) {
     // finance
     React.createElement("section", { className: "pb2-sec" },
       React.createElement("h3", null, React.createElement("em", null, "$"), "Mô hình tài chính — " + G.finance.note),
+      React.createElement("button", { className: "pb-financelink", onClick: () => window.__nav && window.__nav("finance", null) }, "₫ Xem mô hình tài chính đầy đủ — VLF2026: 3 kịch bản · cashflow 19 tháng · funding · độ nhạy rủi ro →"),
       React.createElement("div", { className: "fin-grid" },
         React.createElement("div", { className: "fin-col" },
           React.createElement("div", { className: "fin-hd cost" }, "CHI PHÍ"),
@@ -300,7 +301,7 @@ function PlainView({ open, goView }) {
 
     // reading guide → jumps to tabs
     React.createElement("section", { className: "plain-sec" },
-      React.createElement("h3", null, "Cách đọc 4 bản đồ còn lại"),
+      React.createElement("h3", null, "Cách đọc các bản đồ còn lại"),
       React.createElement("div", { className: "guide-grid" },
         P.guide.map((g, i) => React.createElement("button", { key: i, className: "guide-card", onClick: () => goView(g.view) },
           React.createElement("div", { className: "guide-n" }, "0" + (i + 1)),
