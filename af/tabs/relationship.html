@@ -1,0 +1,150 @@
+<div class="tab-intro">
+  <div class="eyebrow"><span class="num">05</span> Relationship · Bản đồ quan hệ &amp; What-if</div>
+  <h1>What-if ripple — <em>bấm một Work Item, thấy ngay dây chuyền bị ảnh hưởng</em></h1>
+  <p class="lede">26 quan hệ Parental (cha-con) &amp; Normal (tham chiếu) tạo thành đồ thị phụ thuộc. Bấm một Work Item để mô phỏng: nếu nó <b>hủy / trễ / sai</b> thì những WIT nào ở hạ nguồn phải dừng hoặc làm lại — hoặc đảo chiều để xem nó <b>phụ thuộc</b> vào đâu.</p>
+</div>
+
+<!-- WHAT-IF RIPPLE -->
+<div class="block">
+  <div class="block-head"><h2>Mô phỏng tác động lan truyền</h2><span class="bk-tag">click-to-trace</span><span class="line"></span></div>
+  <div class="rip-toolbar">
+    <div class="rip-seg">
+      <button data-rip-dir="down" class="on">▸ Xuôi dòng (tác động)</button>
+      <button data-rip-dir="up">◂ Ngược dòng (phụ thuộc)</button>
+    </div>
+    <button class="rip-reset" id="ripReset">✕ Xóa chọn</button>
+    <span class="rip-hint">Mẹo: bấm chip trong bảng kết quả để mở chi tiết WIT.</span>
+  </div>
+
+  <div class="rip-wrap" id="ripple">
+    <div class="rip-plane">
+      <svg class="rip-svg"></svg>
+      <div class="rip-cols">
+        <div class="rip-col-wrap">
+          <div class="rip-col-h" style="background:var(--st1)">Ý tưởng</div>
+          <div class="rip-col">
+            <div class="rip-node" data-wit="collection"><span class="rn-bar" style="background:var(--st1)"></span><div class="rn-code">collection</div><div class="rn-name">Collection</div></div>
+            <div class="rip-node" data-wit="product-brief"><span class="rn-bar" style="background:var(--st1)"></span><div class="rn-code">product-brief</div><div class="rn-name">Product Brief</div></div>
+          </div>
+        </div>
+        <div class="rip-col-wrap">
+          <div class="rip-col-h" style="background:var(--st2)">Phát triển SP</div>
+          <div class="rip-col">
+            <div class="rip-node" data-wit="style"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">style</div><div class="rn-name">Style</div></div>
+            <div class="rip-node" data-wit="npl-check"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">npl-check</div><div class="rn-name">NPL Check</div></div>
+            <div class="rip-node" data-wit="npl-development"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">npl-development</div><div class="rn-name">NPL Development</div></div>
+            <div class="rip-node" data-wit="material-po"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">material-po</div><div class="rn-name">Material PO</div></div>
+            <div class="rip-node" data-wit="pattern-making"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">pattern-making</div><div class="rn-name">Pattern Making</div></div>
+            <div class="rip-node" data-wit="sample-order"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">sample-order</div><div class="rn-name">Sample Order</div></div>
+            <div class="rip-node" data-wit="sample-review"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">sample-review</div><div class="rn-name">Sample Review</div></div>
+            <div class="rip-node" data-wit="tech-doc"><span class="rn-bar" style="background:var(--st2)"></span><div class="rn-code">tech-doc</div><div class="rn-name">Tech Doc</div></div>
+            <div class="rip-node" data-wit="product-registration"><span class="rn-bar" style="background:var(--p-color-bg-fill-magic)"></span><div class="rn-code">product-registration</div><div class="rn-name">Product Registration ◆</div></div>
+          </div>
+        </div>
+        <div class="rip-col-wrap">
+          <div class="rip-col-h" style="background:var(--st3)">Sản xuất</div>
+          <div class="rip-col">
+            <div class="rip-node" data-wit="sku-master"><span class="rn-bar" style="background:var(--p-color-purple-12)"></span><div class="rn-code">sku-master</div><div class="rn-name">SKU Master</div></div>
+            <div class="rip-node" data-wit="production-request"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">production-request</div><div class="rn-name">Production Request</div></div>
+            <div class="rip-node" data-wit="factory-quotation"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">factory-quotation</div><div class="rn-name">Factory Quotation</div></div>
+            <div class="rip-node" data-wit="production-order"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">production-order</div><div class="rn-name">Production Order</div></div>
+            <div class="rip-node" data-wit="production-lot"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">production-lot</div><div class="rn-name">Production Lot</div></div>
+            <div class="rip-node" data-wit="npl-issue"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">npl-issue</div><div class="rn-name">NPL Issue</div></div>
+            <div class="rip-node" data-wit="qc-inspection"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">qc-inspection</div><div class="rn-name">QC Inspection</div></div>
+            <div class="rip-node" data-wit="inbound-lot"><span class="rn-bar" style="background:var(--st3)"></span><div class="rn-code">inbound-lot</div><div class="rn-name">Inbound Lot</div></div>
+          </div>
+        </div>
+        <div class="rip-col-wrap">
+          <div class="rip-col-h" style="background:var(--st4)">Bán hàng</div>
+          <div class="rip-col">
+            <div class="rip-node" data-wit="marketing-campaign"><span class="rn-bar" style="background:var(--st4)"></span><div class="rn-code">marketing-campaign</div><div class="rn-name">Marketing Campaign</div></div>
+            <div class="rip-node" data-wit="sales-order"><span class="rn-bar" style="background:var(--st4)"></span><div class="rn-code">sales-order</div><div class="rn-name">Sales Order</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rip-panel" id="ripSummary"></div>
+  </div>
+</div>
+
+<!-- Tree -->
+<div class="block">
+  <div class="block-head"><h2>Cây quan hệ</h2><span class="line"></span></div>
+  <div class="card" style="padding:24px 26px;overflow-x:auto;">
+    <div class="rel">
+<div class="ln"><span class="ent">Collection</span> <span class="glyph">(1)</span></div>
+<div class="ln"><span class="glyph">└──</span> <span class="ent">Product Brief</span> <span class="glyph">(N)</span> ──── <span class="rid">R1 Parental</span></div>
+<div class="ln"><span class="glyph">    └──</span> <span class="ent">Style</span> <span class="glyph">(N)</span> ──── <span class="rid">R2 Parental</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">NPL Check</span> <span class="glyph">(1)</span> ── <span class="rid">R3</span></div>
+<div class="ln"><span class="glyph">        │   ├──</span> <span class="ent">NPL Development</span> <span class="glyph">(N)</span> ── <span class="rid">R4</span></div>
+<div class="ln"><span class="glyph">        │   └──</span> <span class="ent">Material PO</span> <span class="glyph">(N)</span> ── <span class="rid">R5 Normal</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Pattern Making</span> <span class="glyph">(N · versions)</span> ── <span class="rid">R6</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Sample Order</span> <span class="glyph">(N)</span> ── <span class="rid">R7</span></div>
+<div class="ln"><span class="glyph">        │   └──</span> <span class="ent">Sample Review</span> <span class="glyph">(N)</span> ── <span class="rid">R8</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Tech Doc</span> <span class="glyph">(1)</span> ── <span class="rid">R9</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Product Registration</span> <span class="glyph">(1)</span> ── <span class="rid">R10</span></div>
+<div class="ln"><span class="glyph">        │   └──</span> <span class="ent">SKU Master</span> <span class="glyph">(N)</span> ── <span class="rid">R11</span> &nbsp;<span class="explode">★ EXPLODE POINT ★</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Production Request</span> <span class="glyph">(1)</span> ── <span class="rid">R12</span></div>
+<div class="ln"><span class="glyph">        │   └──</span> <span class="ent">Factory Quotation</span> <span class="glyph">(N)</span> ── <span class="rid">R13</span></div>
+<div class="ln"><span class="glyph">        │       └──</span> <span class="ent">Production Order</span> <span class="glyph">(1)</span> ── <span class="rid">R14 Normal</span></div>
+<div class="ln"><span class="glyph">        │           ├──</span> <span class="ent">Production Lot</span> <span class="glyph">(N)</span> ── <span class="rid">R15</span></div>
+<div class="ln"><span class="glyph">        │           │   ├──</span> <span class="ent">NPL Issue</span> <span class="glyph">(N)</span> ── <span class="rid">R16</span></div>
+<div class="ln"><span class="glyph">        │           │   ├──</span> <span class="ent">QC Inspection</span> <span class="glyph">(N)</span> ── <span class="rid">R17 Normal</span></div>
+<div class="ln"><span class="glyph">        │           │   └──</span> <span class="ent">Inbound Lot</span> <span class="glyph">(1)</span> ── <span class="rid">R18</span></div>
+<div class="ln"><span class="glyph">        ├──</span> <span class="ent">Marketing Campaign</span> <span class="glyph">(N:N)</span> ── <span class="rid">R19 Normal</span></div>
+<div class="ln"><span class="glyph">        └──</span> <span class="ent">SKU Master</span> <span class="glyph">(N · direct)</span> ── <span class="rid">R20 Normal</span></div>
+<div class="ln"> </div>
+<div class="ln"><span class="ent">SKU Master</span></div>
+<div class="ln"><span class="glyph">├──</span> <span class="ent">Allocation Order</span> <span class="glyph">(N:N)</span> ── <span class="rid">R21</span> · <span class="glyph">└── Store Receipt</span> ── <span class="rid">R22</span></div>
+<div class="ln"><span class="glyph">├──</span> <span class="ent">Sales Order</span> <span class="glyph">(N:N)</span> ── <span class="rid">R23</span> &nbsp;&nbsp;<span class="glyph">├──</span> <span class="ent">Return Lot</span> ── <span class="rid">R24</span></div>
+<div class="ln"><span class="glyph">└──</span> <span class="ent">Inventory Adjustment</span> ── <span class="rid">R25</span> &nbsp;&nbsp;<span class="glyph">└──</span> <span class="ent">Sync Job</span> ── <span class="rid">R26</span></div>
+    </div>
+    <div class="legend">
+      <span><i class="par"></i> <b style="color:var(--p-color-text)">Parental</b> — cha-con, xóa cha xóa con</span>
+      <span><i class="nor"></i> Normal — liên kết tham chiếu N:N</span>
+      <span><span class="explode" style="font-size:11px;padding:1px 6px;">EXPLODE</span> 1 Style → N SKU (color × size)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Relationship registry table -->
+<div class="block">
+  <div class="block-head"><h2>Sổ đăng ký quan hệ</h2><span class="bk-tag">R1 – R26</span><span class="line"></span></div>
+  <div class="card" style="overflow:hidden;">
+    <table class="tabledeep">
+      <thead><tr><th style="width:60px;">ID</th><th>Từ (cha)</th><th>Đến (con)</th><th style="width:110px;">Kiểu</th><th style="width:90px;">Cardinality</th></tr></thead>
+      <tbody>
+        <tr><td><code>R1</code></td><td>Collection</td><td>Product Brief</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R2</code></td><td>Product Brief</td><td>Style</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R3</code></td><td>Style</td><td>NPL Check</td><td><span class="stat ok">Parental</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R4</code></td><td>NPL Check</td><td>NPL Development</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R5</code></td><td>NPL Check</td><td>Material PO</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R6</code></td><td>Style</td><td>Pattern Making</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R7</code></td><td>Style</td><td>Sample Order</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R8</code></td><td>Sample Order</td><td>Sample Review</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R9</code></td><td>Style</td><td>Tech Doc</td><td><span class="stat ok">Parental</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R10</code></td><td>Style</td><td>Product Registration</td><td><span class="stat ok">Parental</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R11</code></td><td>Product Registration</td><td>SKU Master <span class="badge new" style="margin-left:4px;">EXPLODE</span></td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R12</code></td><td>Style</td><td>Production Request</td><td><span class="stat ok">Parental</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R13</code></td><td>Production Request</td><td>Factory Quotation</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R14</code></td><td>Factory Quotation</td><td>Production Order</td><td><span class="stat info">Normal</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R15</code></td><td>Production Order</td><td>Production Lot</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R16</code></td><td>Production Lot</td><td>NPL Issue</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R17</code></td><td>Production Lot / Inbound</td><td>QC Inspection</td><td><span class="stat info">Normal</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R18</code></td><td>Production Lot</td><td>Inbound Lot</td><td><span class="stat ok">Parental</span></td><td class="num">1 : 1</td></tr>
+        <tr><td><code>R19</code></td><td>Style</td><td>Marketing Campaign</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R20</code></td><td>Style</td><td>SKU Master (direct)</td><td><span class="stat info">Normal</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R21</code></td><td>SKU Master</td><td>Allocation Order</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R22</code></td><td>Allocation Order</td><td>Store Receipt</td><td><span class="stat ok">Parental</span></td><td class="num">1 : N</td></tr>
+        <tr><td><code>R23</code></td><td>SKU Master</td><td>Sales Order</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R24</code></td><td>SKU Master</td><td>Return Lot</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R25</code></td><td>SKU Master</td><td>Inventory Adjustment</td><td><span class="stat info">Normal</span></td><td class="num">N : N</td></tr>
+        <tr><td><code>R26</code></td><td>SKU Master</td><td>Sync Job</td><td><span class="stat info">Normal</span></td><td class="num">1 : N</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout magic" style="margin-top:18px;">
+    <span class="ci">◆</span>
+    <div><b>Master Data</b> (Vendor, Factory, Store, Color, Size, Material) tham chiếu xuyên suốt nhưng <b>không</b> khai báo quan hệ formal — giữ chúng là dictionary dùng chung để tránh trùng lặp dữ liệu và dễ bảo trì.</div>
+  </div>
+</div>

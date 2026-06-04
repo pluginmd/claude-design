@@ -1,0 +1,115 @@
+<div class="tab-intro">
+  <div class="eyebrow"><span class="num">05</span> Bản đồ tổng · Pan / Zoom</div>
+  <h1>Toàn cảnh chuỗi giá trị trên một canvas — <em>kéo để di, cuộn (Ctrl) để phóng</em></h1>
+  <p class="lede">Cả hai luồng phát triển (Sản xuất &amp; FOB) hội tụ về "Tạo mã Product" rồi đi chung qua sản xuất → bán hàng. Bấm bất kỳ ô nào để mở chi tiết Work Item. Dùng nút góc phải để phóng to/thu nhỏ/vừa khung.</p>
+</div>
+
+<div class="pz" id="pz">
+  <div class="pz-plane">
+    <div class="map-canvas">
+      <div class="map-title"><h2>American Fashion — Bản đồ vận hành đầu-cuối</h2><p>Ý tưởng → Phát triển (2 luồng) → Tạo mã → Sản xuất → Bán hàng</p></div>
+
+      <!-- Stage 1 -->
+      <div class="map-track">
+        <div class="map-track-h" style="background:var(--st1)">Giai đoạn 1 · Ý tưởng</div>
+        <div class="map-row">
+          <div class="map-card" data-drawer="wit:collection"><div class="mc-code">collection</div><div class="mc-name">Collection</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:product-brief"><div class="mc-code">product-brief</div><div class="mc-name">Product Brief</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:style"><div class="mc-code">style</div><div class="mc-name">Style mở</div></div>
+        </div>
+      </div>
+
+      <!-- Stage 2 — Track A -->
+      <div class="map-track">
+        <div class="map-track-h" style="background:var(--st2)">Giai đoạn 2A · Phát triển Sản xuất (in-house)</div>
+        <div class="map-row">
+          <div class="map-card gate" data-drawer="wit:npl-check"><div class="mc-code">npl-check</div><div class="mc-name">Kiểm tra NPL</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:pattern-making"><div class="mc-code">pattern-making</div><div class="mc-name">Làm rập</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sample-order"><div class="mc-code">sample-order</div><div class="mc-name">May mẫu gốc</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card gate" data-drawer="wit:sample-review"><div class="mc-code">sample-review</div><div class="mc-name">Duyệt mẫu gốc</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sample-order"><div class="mc-code">sample-order</div><div class="mc-name">May size set</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card gate" data-drawer="wit:sample-review"><div class="mc-code">sample-review</div><div class="mc-name">Duyệt size set</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:tech-doc"><div class="mc-code">tech-doc</div><div class="mc-name">Ban hành Tech Doc</div></div>
+        </div>
+      </div>
+
+      <!-- Stage 2 — Track B -->
+      <div class="map-track">
+        <div class="map-track-h" style="background:var(--st3)">Giai đoạn 2B · Phát triển FOB (supplier-led)</div>
+        <div class="map-row">
+          <div class="map-card" data-drawer="wit:factory-quotation"><div class="mc-code">factory-quotation</div><div class="mc-name">Tìm NCC</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sample-order"><div class="mc-code">sample-order</div><div class="mc-name">Chào mẫu (NCC)</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card gate" data-drawer="wit:sample-review"><div class="mc-code">sample-review</div><div class="mc-name">Chọn mẫu</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card gate" data-drawer="wit:sample-review"><div class="mc-code">sample-review</div><div class="mc-name">Duyệt nội bộ</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:tech-doc"><div class="mc-code">tech-doc</div><div class="mc-name">Chuẩn hóa Tech Doc</div></div>
+        </div>
+      </div>
+
+      <!-- Merge -->
+      <div class="map-merge">⟱ &nbsp; Hai luồng hội tụ tại <b>Tạo mã Product</b> &nbsp; ⟱</div>
+
+      <!-- Stage 3 -->
+      <div class="map-track">
+        <div class="map-track-h" style="background:var(--p-color-bg-fill-magic)">Hội tụ &amp; Sản xuất</div>
+        <div class="map-row">
+          <div class="map-card expl" data-drawer="wit:product-registration"><div class="mc-code">product-registration</div><div class="mc-name">Tạo mã Product ◆</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sku-master"><div class="mc-code">sku-master</div><div class="mc-name">SKU Master</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:production-request"><div class="mc-code">production-request</div><div class="mc-name">Yêu cầu SX</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:factory-quotation"><div class="mc-code">factory-quotation</div><div class="mc-name">Chào giá Factory</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:production-order"><div class="mc-code">production-order</div><div class="mc-name">Lệnh SX</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:production-lot"><div class="mc-code">production-lot</div><div class="mc-name">Lô SX</div></div>
+        </div>
+      </div>
+
+      <div class="map-track">
+        <div class="map-track-h" style="background:var(--st3)">Giai đoạn 3 · Kho &amp; QC</div>
+        <div class="map-row">
+          <div class="map-card" data-drawer="wit:npl-issue"><div class="mc-code">npl-issue</div><div class="mc-name">Xuất NPL <span style="color:var(--p-color-text-disabled)">(chỉ SX)</span></div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card gate" data-drawer="wit:qc-inspection"><div class="mc-code">qc-inspection</div><div class="mc-name">QC kiểm tra</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:inbound-lot"><div class="mc-code">inbound-lot</div><div class="mc-name">Nhập kho</div></div>
+        </div>
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="map-track" style="margin-bottom:0;">
+        <div class="map-track-h" style="background:var(--st4)">Giai đoạn 4 · Bán hàng</div>
+        <div class="map-row">
+          <div class="map-card" data-drawer="wit:marketing-campaign"><div class="mc-code">marketing-campaign</div><div class="mc-name">Chiến dịch MKT</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sku-master"><div class="mc-code">sku-master</div><div class="mc-name">Phân bổ cửa hàng</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" data-drawer="wit:sales-order"><div class="mc-code">sales-order</div><div class="mc-name">Bán online + offline</div></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card" style="background:var(--p-color-bg-surface-success);border-color:var(--p-color-border-success);cursor:default;"><div class="mc-code">accounting</div><div class="mc-name">Đối soát ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pz-hint">Kéo để di chuyển · Ctrl/⌘ + cuộn để phóng · bấm ô để mở chi tiết</div>
+  <div class="pz-ctrl">
+    <button data-pz="out" title="Thu nhỏ">−</button>
+    <span class="pz-pct">100%</span>
+    <button data-pz="in" title="Phóng to">+</button>
+    <button data-pz="fit" title="Vừa khung">⤢</button>
+  </div>
+</div>

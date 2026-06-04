@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>American Fashion × Meegle — Master Plan</title>
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/plan.css" />
+<link rel="stylesheet" href="assets/app.css" />
+<link rel="stylesheet" href="assets/drawer.css" />
+<link rel="stylesheet" href="assets/charts.css" />
+<link rel="stylesheet" href="assets/views.css" />
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" fill="#1A1A1A"/>
+<g transform="translate(26,26)">
+<rect x="0" y="0" width="48" height="48" rx="5" fill="#fff"/>
+<rect x="0" y="0" width="48" height="12" rx="5" fill="#8051FF"/>
+<rect x="6" y="20" width="14" height="6" rx="2" fill="#1A1A1A"/>
+<rect x="24" y="20" width="18" height="6" rx="2" fill="#D4D4D4"/>
+<rect x="6" y="31" width="36" height="4" rx="2" fill="#E3E3E3"/>
+<rect x="6" y="39" width="26" height="4" rx="2" fill="#E3E3E3"/>
+</g>
+</svg>
+</template>
+</head>
+<body>
+<div class="scaffold"></div>
+
+<header class="appbar">
+  <div class="appbar-top">
+    <div class="logo">American&nbsp;Fashion <span class="x">×</span> Meegle</div>
+    <div class="sub">Master Plan triển khai · Chuẩn hóa chuỗi giá trị &amp; SOP</div>
+    <div class="spacer"></div>
+    <button class="tctl" id="btnPalette">⌕ Tìm nhanh <kbd>⌘K</kbd></button>
+    <div class="pill" id="tabCount">13 modules</div>
+  </div>
+  <nav class="tabbar" id="tabbar"></nav>
+</header>
+
+<main class="tabwrap" id="content">
+  <div class="tab-loading">Đang tải…</div>
+</main>
+
+<script>
+window.__BUILD = '9';
+(function(){
+  // Tab registry — order defines the bar
+  var TABS = [
+    { id: 'plain',        label: 'Dễ hiểu',        sub: 'Bản dẫn nhập' },
+    { id: 'approach',     label: 'Approach',       sub: 'Phương pháp luận' },
+    { id: 'context',      label: 'Context',        sub: 'Bối cảnh AF' },
+    { id: 'valuechain',   label: 'Value Chain',    sub: '2 luồng phát triển' },
+    { id: 'map',          label: 'Bản đồ tổng',    sub: 'Pan/zoom toàn cảnh' },
+    { id: 'wit',          label: 'Work Item Types',sub: '21 WIT · data dict' },
+    { id: 'relationship', label: 'Relationship',   sub: 'What-if ripple' },
+    { id: 'workflow',     label: 'Workflow',       sub: '2 template Style' },
+    { id: 'automation',   label: 'Automation',     sub: '30 quy tắc' },
+    { id: 'roles',        label: 'Roles & RACI',   sub: '16 vai trò' },
+    { id: 'dashboard',    label: 'Dashboard',      sub: '8 view · Live' },
+    { id: 'scenario',     label: 'Scenario',       sub: 'End-to-end' },
+    { id: 'roadmap',      label: 'Roadmap',        sub: '25 ngày' }
+  ];
+  window.__TABS = TABS;
+  var bar = document.getElementById('tabbar');
+  var content = document.getElementById('content');
+  var cache = {};
+  var pendingSel = null;  // deep-link selection to open after a tab renders
+
+  TABS.forEach(function(t, i){
+    var el = document.createElement('div');
+    el.className = 'tab';
+    el.dataset.id = t.id;
+    el.innerHTML = '<span class="ti">' + String(i+1).padStart(2,'0') + '</span>' + t.label;
+    el.addEventListener('click', function(){ go(t.id); });
+    bar.appendChild(el);
+  });
+
+  function setActive(id){
+    Array.prototype.forEach.call(bar.children, function(c){
+      c.classList.toggle('active', c.dataset.id === id);
+    });
+    var at = bar.querySelector('.tab.active');
+    if (at && at.scrollIntoView) {
+      var r = at.getBoundingClientRect();
+      if (r.left < 80 || r.right > window.innerWidth - 80) {
+        at.scrollIntoView({ inline: 'center', block: 'nearest' });
+      }
+    }
+  }
+
+  // hash format: #tab  OR  #tab~type:id  (deep-link a drawer selection)
+  function parseHash(){
+    var h = (location.hash||'').replace(/^#/,'');
+    var parts = h.split('~');
+    return { tab: parts[0]||'', sel: parts[1]||'' };
+  }
+  function writeHash(tab, sel){
+    var next = '#' + tab + (sel?('~'+sel):'');
+    if(location.hash !== next) history.replaceState(null,'',next);
+  }
+  var curTab = null, curSel = null;
+
+  window.__SETSEL = function(sel){ curSel = sel; writeHash(curTab, sel); };
+  window.__CLEARSEL = function(){ curSel = null; writeHash(curTab, ''); };
+
+  function go(id, sel){
+    if (!TABS.some(function(t){ return t.id === id; })) id = TABS[0].id;
+    curTab = id; curSel = sel||null;
+    writeHash(id, sel||'');
+    setActive(id);
+    render(id);
+  }
+  window.__GO = go;
+
+  function render(id){
+    if (cache[id]) { swap(cache[id]); return; }
+    content.innerHTML = '<div class="tab-loading">Đang tải module…</div>';
+    fetch('tabs/' + id + '.html?v=' + (window.__BUILD || '3'))
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function(html){ cache[id] = html; swap(html); })
+      .catch(function(e){
+        content.innerHTML = '<div class="tab-loading">Không tải được module <code>' + id + '</code> (' + e.message + ').</div>';
+      });
+  }
+
+  function swap(html){
+    content.innerHTML = html;
+    window.scrollTo(0, 0);
+    runInits();
+    // open deep-linked selection once data + drawer are ready
+    if (pendingSel) { tryOpenSel(pendingSel); pendingSel = null; }
+  }
+
+  function runInits(){
+    content.querySelectorAll('[data-filter-group]').forEach(initFilter);
+    content.querySelectorAll('[data-dvgroup]').forEach(initDashViews);
+    if (window.__initRipple) window.__initRipple(content);
+    if (window.__initPanzoom) window.__initPanzoom(content);
+    if (window.__initLive) window.__initLive(content);
+  }
+  window.__RUNINITS = runInits;
+
+  function tryOpenSel(sel){
+    var p = sel.split(':'); if(p.length<2) return;
+    var attempt = function(n){
+      if(window.openDrawer && window.MEEGLE_DATA){ window.openDrawer(p[0], p.slice(1).join(':')); curSel=sel; }
+      else if(n<20){ setTimeout(function(){ attempt(n+1); }, 120); }
+    };
+    attempt(0);
+  }
+
+  function initDashViews(group){
+    var tabs = group.querySelectorAll('.dv-tab');
+    var panels = content.querySelectorAll('[data-dvpanel]');
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(c){ c.classList.remove('active'); });
+        t.classList.add('active');
+        var id = t.getAttribute('data-dv');
+        panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-dvpanel') === id); });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  function initFilter(group){
+    var chips = group.querySelectorAll('.chip-filter');
+    var scope = group.getAttribute('data-filter-group');
+    var targets = document.querySelectorAll('[data-filter-target="' + scope + '"] [data-stage]');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.classList.remove('active'); });
+        chip.classList.add('active');
+        var v = chip.getAttribute('data-filter');
+        targets.forEach(function(t){
+          t.style.display = (v === 'all' || t.getAttribute('data-stage') === v) ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  document.getElementById('btnPalette').addEventListener('click', function(){ if(window.__openPalette) window.__openPalette(); });
+
+  window.addEventListener('hashchange', function(){
+    var h = parseHash();
+    var id = h.tab || TABS[0].id;
+    if(id!==curTab){ curTab=id; setActive(id); render(id); }
+    if(h.sel && h.sel!==curSel){ if(cache[id]) tryOpenSel(h.sel); else pendingSel=h.sel; }
+  });
+
+  var initH = parseHash();
+  var start = initH.tab || TABS[0].id;
+  if(initH.sel) pendingSel = initH.sel;
+  curTab = start;
+  setActive(start);
+  render(start);
+
+  // Dynamically inject data + drawer + graph + interactions scripts in order.
+  ['assets/data-wit-a.js','assets/data-wit-b.js','assets/data-misc.js','assets/drawer.js','assets/graph.js','assets/views.js','assets/interactions.js']
+    .reduce(function(p, src){
+      return p.then(function(){
+        return new Promise(function(res){
+          var s = document.createElement('script');
+          s.src = src + '?v=' + (window.__BUILD || '2'); s.onload = res; s.onerror = res;
+          document.body.appendChild(s);
+        });
+      });
+    }, Promise.resolve())
+    .then(function(){ runInits(); if(pendingSel){ tryOpenSel(pendingSel); pendingSel=null; } });
+})();
+</script>
+</body>
+</html>
