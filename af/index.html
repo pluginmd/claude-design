@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="assets/plan.css" />
 <link rel="stylesheet" href="assets/app.css" />
 <link rel="stylesheet" href="assets/drawer.css" />
+<link rel="stylesheet" href="assets/charts.css" />
 <template id="__bundler_thumbnail">
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 <rect width="100" height="100" fill="#1A1A1A"/>
@@ -104,6 +105,22 @@
     window.scrollTo(0, 0);
     // run any inline data-init handlers (filter chips etc.)
     content.querySelectorAll('[data-filter-group]').forEach(initFilter);
+    content.querySelectorAll('[data-dvgroup]').forEach(initDashViews);
+  }
+
+  // dashboard view switcher: .dv-tab[data-dv] toggles [data-dvpanel]
+  function initDashViews(group){
+    var tabs = group.querySelectorAll('.dv-tab');
+    var panels = content.querySelectorAll('[data-dvpanel]');
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(c){ c.classList.remove('active'); });
+        t.classList.add('active');
+        var id = t.getAttribute('data-dv');
+        panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-dvpanel') === id); });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   }
 
   // generic chip filter: chips with data-filter set stage; cards with data-stage shown/hidden
