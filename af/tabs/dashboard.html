@@ -1,0 +1,150 @@
+<div class="tab-intro">
+  <div class="eyebrow"><span class="num">09</span> Dashboard · Panoramic views</div>
+  <h1>8 bảng điều khiển theo vai trò — <em>mỗi người một góc nhìn, một sự thật chung</em></h1>
+  <p class="lede">Mỗi view tổng hợp dữ liệu liên quan cho một nhóm người dùng ở chế độ phù hợp (Kanban / Grid / Gantt / Tree / Calendar). Dưới đây là mock dữ liệu minh họa bố cục thực tế trên Meegle.</p>
+</div>
+
+<!-- 1 Pipeline Kanban -->
+<div class="dash">
+  <div class="dash-head"><span class="dnum">1</span><div><div class="dttl">Pipeline sản phẩm</div><div class="downer">Calvin + Diễm Chi · grouped by current node</div></div><span class="dmode">Kanban</span></div>
+  <div class="dash-body">
+    <div class="kanban">
+      <div class="kcol"><div class="kh">Thiết kế <span class="cnt">3</span></div>
+        <div class="kcard"><div class="kt">Polo nam basic SP26</div><div class="km"><span class="kav" style="background:var(--st2)">L</span> Lan · N3</div></div>
+        <div class="kcard"><div class="kt">Đầm linen nữ</div><div class="km"><span class="kav" style="background:var(--st2)">L</span> Lan · N2</div></div>
+        <div class="kcard"><div class="kt">Jacket bomber</div><div class="km"><span class="kav" style="background:var(--st2)">K</span> Khoa · N3</div></div>
+      </div>
+      <div class="kcol"><div class="kh">NPL / Rập <span class="cnt">2</span></div>
+        <div class="kcard"><div class="kt">Quần chino nam</div><div class="km"><span class="kav" style="background:var(--p-color-gray-13)">T</span> Trang · N4</div></div>
+        <div class="kcard"><div class="kt">Áo sơ mi oxford</div><div class="km"><span class="kav" style="background:var(--p-color-gray-13)">H</span> Hoàng · N5</div></div>
+      </div>
+      <div class="kcol"><div class="kh">Duyệt mẫu <span class="cnt">2</span></div>
+        <div class="kcard"><div class="kt">Polo nam basic SP26</div><div class="km"><span class="stat warn">Gate 1 · v2</span></div></div>
+        <div class="kcard"><div class="kt">Váy midi xếp ly</div><div class="km"><span class="stat info">Gate 3</span></div></div>
+      </div>
+      <div class="kcol"><div class="kh">Tạo mã / SX <span class="cnt">2</span></div>
+        <div class="kcard"><div class="kt">Áo thun cổ tròn</div><div class="km"><span class="stat ok">N14 explode</span></div></div>
+        <div class="kcard"><div class="kt">Quần short kaki</div><div class="km"><span class="kav" style="background:var(--st3)">P</span> N15</div></div>
+      </div>
+      <div class="kcol"><div class="kh">Đang bán <span class="cnt">1</span></div>
+        <div class="kcard"><div class="kt">Hoodie nỉ bông</div><div class="km"><span class="stat ok">Live · 1.2k bán</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2 NPL Health -->
+<div class="dash">
+  <div class="dash-head"><span class="dnum">2</span><div><div class="dttl">NPL Health</div><div class="downer">Purchasing · status ≠ Closed</div></div><span class="dmode">Grid</span></div>
+  <div class="dash-body" style="padding:0;">
+    <table class="gridtbl">
+      <thead><tr><th>NPL</th><th>Style</th><th>Trạng thái</th><th>NCC</th><th>Lead time</th><th style="width:120px;">Tiến độ</th></tr></thead>
+      <tbody>
+        <tr><td>Cotton pique 250gsm Navy</td><td>Polo SP26</td><td><span class="stat warn">Đang phát triển</span></td><td>Á Châu</td><td class="num">15d</td><td><div class="pbar"><span style="width:60%;background:var(--st3)"></span></div></td></tr>
+        <tr><td>Kaki co giãn Olive</td><td>Quần chino</td><td><span class="stat info">Chờ mẫu NCC</span></td><td>Phong Phú</td><td class="num">10d</td><td><div class="pbar"><span style="width:35%;background:var(--st2)"></span></div></td></tr>
+        <tr><td>Vải linen tự nhiên</td><td>Đầm linen</td><td><span class="stat ok">Đủ tồn</span></td><td>—</td><td class="num">0d</td><td><div class="pbar"><span style="width:100%;background:var(--st4)"></span></div></td></tr>
+        <tr><td>Cúc gỗ 18mm</td><td>Sơ mi oxford</td><td><span class="stat crit">Thiếu — đặt mới</span></td><td>Tìm NCC</td><td class="num">—</td><td><div class="pbar"><span style="width:15%;background:var(--p-color-bg-fill-critical)"></span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="grid-2">
+  <!-- 3 Sample Tracker -->
+  <div class="dash">
+    <div class="dash-head"><span class="dnum">3</span><div><div class="dttl">Sample &amp; Approval</div><div class="downer">Diễm Chi</div></div><span class="dmode">Grid+Cal</span></div>
+    <div class="dash-body" style="padding:0;">
+      <table class="gridtbl">
+        <thead><tr><th>Mẫu</th><th>Loại</th><th>Lịch duyệt</th><th>KQ</th></tr></thead>
+        <tbody>
+          <tr><td>Polo SP26</td><td>Mẫu gốc</td><td class="num">04/06</td><td><span class="stat warn">Sửa v2</span></td></tr>
+          <tr><td>Váy midi</td><td>Size set</td><td class="num">05/06</td><td><span class="stat mut">Chờ</span></td></tr>
+          <tr><td>Áo thun</td><td>Nội bộ</td><td class="num">03/06</td><td><span class="stat ok">Đạt</span></td></tr>
+          <tr><td>Bomber</td><td>Mẫu gốc</td><td class="num">06/06</td><td><span class="stat mut">Chờ</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6 Quality -->
+  <div class="dash">
+    <div class="dash-head"><span class="dnum">6</span><div><div class="dttl">Quality Overview</div><div class="downer">QC Lead</div></div><span class="dmode">Grid</span></div>
+    <div class="dash-body">
+      <div class="kpis" style="grid-template-columns:repeat(2,1fr);margin-bottom:12px;">
+        <div class="kpi"><div class="kl">Pass rate TB</div><div class="kv">96.8%</div><div class="kd up">▲ 1.2%</div></div>
+        <div class="kpi"><div class="kl">Lô fail tháng</div><div class="kv">2</div><div class="kd down">cần re-work</div></div>
+      </div>
+      <table class="gridtbl">
+        <thead><tr><th>Factory</th><th>Loại</th><th>Pass</th></tr></thead>
+        <tbody>
+          <tr><td>Nội bộ</td><td>Final</td><td><span class="stat ok">97%</span></td></tr>
+          <tr><td>OEM-B</td><td>In-line</td><td><span class="stat warn">91%</span></td></tr>
+          <tr><td>Á Châu</td><td>NPL</td><td><span class="stat ok">99%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 4 Production Gantt -->
+<div class="dash">
+  <div class="dash-head"><span class="dnum">4</span><div><div class="dttl">Production Dashboard</div><div class="downer">Production Planning · timeline</div></div><span class="dmode">Gantt</span></div>
+  <div class="dash-body">
+    <div class="gchart">
+      <div class="grow2"><div class="gl">Chào giá Factory</div><div class="gt"><div class="gb" style="width:18%;margin-left:0;background:var(--st3)">3d</div></div></div>
+      <div class="grow2"><div class="gl">Xuất NPL</div><div class="gt"><div class="gb" style="width:10%;margin-left:18%;background:var(--st3)">2d</div></div></div>
+      <div class="grow2"><div class="gl">Lô 1 · 1200 cái</div><div class="gt"><div class="gb" style="width:40%;margin-left:28%;background:var(--st2)">cắt → may → QC</div></div></div>
+      <div class="grow2"><div class="gl">Lô 2 · 800 cái</div><div class="gt"><div class="gb" style="width:35%;margin-left:50%;background:var(--st2)">may → QC</div></div></div>
+      <div class="grow2"><div class="gl">Nhập kho + phân bổ</div><div class="gt"><div class="gb" style="width:15%;margin-left:85%;background:var(--st4)">FG</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 Warehouse + 7 Tree -->
+<div class="grid-2">
+  <div class="dash">
+    <div class="dash-head"><span class="dnum">5</span><div><div class="dttl">Warehouse Ops</div><div class="downer">Warehouse Manager</div></div><span class="dmode">Kanban</span></div>
+    <div class="dash-body">
+      <div class="kanban">
+        <div class="kcol"><div class="kh">Xuất NPL <span class="cnt">2</span></div><div class="kcard"><div class="kt">NPL-ISS-014</div><div class="km">Lô 1 · Factory nội bộ</div></div><div class="kcard"><div class="kt">NPL-ISS-015</div><div class="km">Lô 2</div></div></div>
+        <div class="kcol"><div class="kh">Nhập kho <span class="cnt">1</span></div><div class="kcard"><div class="kt">IB-Lot-1200</div><div class="km"><span class="stat ok">QC pass</span></div></div></div>
+        <div class="kcol"><div class="kh">Phân bổ <span class="cnt">1</span></div><div class="kcard"><div class="kt">ALO-08store</div><div class="km">chờ Sales duyệt</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash">
+    <div class="dash-head"><span class="dnum">7</span><div><div class="dttl">End-to-End Tracker</div><div class="downer">Calvin + Diễm Chi</div></div><span class="dmode">Tree</span></div>
+    <div class="dash-body">
+      <div class="treeview">
+        <div class="tnode"><span class="tg"> </span><span class="tchip"><span class="tc" style="background:var(--p-color-gray-16)"></span>SP26 Summer</span><span class="tmeta">12 styles</span></div>
+        <div class="tnode"><span class="tg">└─</span><span class="tchip"><span class="tc" style="background:var(--st1)"></span>Brief · Polo basic</span><span class="tmeta">approved</span></div>
+        <div class="tnode"><span class="tg">  └─</span><span class="tchip"><span class="tc" style="background:var(--st2)"></span>Style · Polo SP26</span><span class="tmeta">N7 · v2</span></div>
+        <div class="tnode"><span class="tg">    ├─</span><span class="tchip"><span class="tc" style="background:var(--st2)"></span>NPL Check</span><span class="tmeta">đủ</span></div>
+        <div class="tnode"><span class="tg">    ├─</span><span class="tchip"><span class="tc" style="background:var(--st2)"></span>Sample · mẫu gốc</span><span class="tmeta">sửa</span></div>
+        <div class="tnode"><span class="tg">    └─</span><span class="tchip"><span class="tc" style="background:var(--p-color-purple-12)"></span>SKU ×20</span><span class="tmeta">chờ</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 Cost -->
+<div class="dash">
+  <div class="dash-head"><span class="dnum">8</span><div><div class="dttl">Cost &amp; Budget</div><div class="downer">Accounting + Calvin · per Style / Collection</div></div><span class="dmode">Grid</span></div>
+  <div class="dash-body">
+    <div class="kpis" style="margin-bottom:14px;">
+      <div class="kpi"><div class="kl">Tổng NPL SP26</div><div class="kv p-money">$48.2K</div></div>
+      <div class="kpi"><div class="kl">Phí gia công</div><div class="kv p-money">$31.5K</div></div>
+      <div class="kpi"><div class="kl">COGS / cái TB</div><div class="kv p-money">$3.98</div></div>
+      <div class="kpi"><div class="kl">Margin dự kiến</div><div class="kv">62%</div><div class="kd up">▲ trên target</div></div>
+    </div>
+    <table class="gridtbl">
+      <thead><tr><th>Style</th><th>NPL</th><th>Gia công</th><th>COGS/cái</th><th>Retail</th><th>Margin</th></tr></thead>
+      <tbody>
+        <tr><td>Polo SP26</td><td class="num p-money">$12.0K</td><td class="num p-money">$9.0K</td><td class="num p-money">$3.50</td><td class="num p-money">$9.99</td><td><span class="stat ok">65%</span></td></tr>
+        <tr><td>Quần chino</td><td class="num p-money">$18.4K</td><td class="num p-money">$13.2K</td><td class="num p-money">$5.20</td><td class="num p-money">$12.99</td><td><span class="stat ok">60%</span></td></tr>
+        <tr><td>Đầm linen</td><td class="num p-money">$17.8K</td><td class="num p-money">$9.3K</td><td class="num p-money">$6.10</td><td class="num p-money">$14.99</td><td><span class="stat warn">59%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

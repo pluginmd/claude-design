@@ -1,0 +1,53 @@
+<div class="tab-intro">
+  <div class="eyebrow"><span class="num">07</span> Automation · No-code rules</div>
+  <h1>26 quy tắc tự động hóa — <em>máy lo bàn giao, người lo quyết định</em></h1>
+  <p class="lede">Mỗi quy tắc gồm Trigger → Condition → Action. Chuỗi <code>A_ST*</code> điều phối trục Style; các nhóm còn lại lo NPL, sản xuất, kho và đồng bộ POS. Đây là phần thay thế hàng trăm email "đã xong, chuyển bước tiếp".</p>
+</div>
+
+<div class="block">
+  <div class="kpis" style="grid-template-columns:repeat(4,1fr);margin-bottom:var(--p-space-600);">
+    <div class="kpi"><div class="kl">Chuỗi Style</div><div class="kv">10</div><div class="kd muted">A_ST1 → A_ST10</div></div>
+    <div class="kpi"><div class="kl">NPL &amp; Pattern</div><div class="kv">4</div><div class="kd muted">A_NPL1, A_PAT1–3</div></div>
+    <div class="kpi"><div class="kl">SKU &amp; Sản xuất</div><div class="kv">8</div><div class="kd muted">A_PR, A_FQ, A_PO…</div></div>
+    <div class="kpi"><div class="kl">Kho &amp; đặc biệt</div><div class="kv">4</div><div class="kd muted">A_IB, A_ALO, A_KILL</div></div>
+  </div>
+
+  <div class="card" style="overflow:hidden;">
+    <table class="autotable">
+      <thead><tr><th style="width:90px;">ID</th><th style="width:32%;">Trigger</th><th style="width:20%;">Condition</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr data-drawer="auto:A_PB1"><td class="aid">A_PB1</td><td>Product Brief · "Assign to Design"</td><td class="cond">—</td><td class="act-cell">Tạo Style, link brief, inherit category/segment</td></tr>
+        <tr data-drawer="auto:A_ST1"><td class="aid">A_ST1</td><td>Style · N4 Kiểm tra NPL arrived</td><td class="cond"><code>npl_check</code> empty</td><td class="act-cell">Tạo NPL Check, link style</td></tr>
+        <tr data-drawer="auto:A_ST2"><td class="aid">A_ST2</td><td>Style · N5 arrived</td><td class="cond"><code>pattern</code> empty</td><td class="act-cell">Tạo Pattern Making (rập mẫu gốc)</td></tr>
+        <tr data-drawer="auto:A_ST3"><td class="aid">A_ST3</td><td>Style · N6 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (mẫu gốc)</td></tr>
+        <tr data-drawer="auto:A_ST4"><td class="aid">A_ST4</td><td>Sample Order (mẫu gốc) closed</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt mẫu gốc)</td></tr>
+        <tr data-drawer="auto:A_ST5"><td class="aid">A_ST5</td><td>Style · N9 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt nội bộ)</td></tr>
+        <tr data-drawer="auto:A_ST6"><td class="aid">A_ST6</td><td>Style · N11 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (size set)</td></tr>
+        <tr data-drawer="auto:A_ST7"><td class="aid">A_ST7</td><td>Sample Order (size set) closed</td><td class="cond">—</td><td class="act-cell">Tạo Sample Review (duyệt size set)</td></tr>
+        <tr data-drawer="auto:A_ST8"><td class="aid">A_ST8</td><td>Style · N13 arrived</td><td class="cond"><code>tech_doc</code> empty</td><td class="act-cell">Tạo Tech Doc</td></tr>
+        <tr data-drawer="auto:A_ST9"><td class="aid">A_ST9</td><td>Style · N14 arrived</td><td class="cond"><code>product_reg</code> empty</td><td class="act-cell">Tạo Product Registration</td></tr>
+        <tr data-drawer="auto:A_ST10"><td class="aid">A_ST10</td><td>Style · N15 arrived</td><td class="cond">—</td><td class="act-cell">Tạo Production Request</td></tr>
+        <tr data-drawer="auto:A_NPL1"><td class="aid">A_NPL1</td><td>NPL Check · N3 mỗi item thiếu</td><td class="cond">—</td><td class="act-cell">Tạo NPL Development <i>hoặc</i> Material PO</td></tr>
+        <tr data-drawer="auto:A_PAT1"><td class="aid">A_PAT1</td><td>Pattern Making · N3</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (mẫu gốc)</td></tr>
+        <tr data-drawer="auto:A_PAT2"><td class="aid">A_PAT2</td><td>Pattern Making · N5</td><td class="cond">—</td><td class="act-cell">Tạo Sample Order (size set)</td></tr>
+        <tr data-drawer="auto:A_PAT3"><td class="aid">A_PAT3</td><td>Pattern Making · N6</td><td class="cond">—</td><td class="act-cell">Tạo Tech Doc draft</td></tr>
+        <tr data-drawer="auto:A_PR1"><td class="aid">A_PR1</td><td>Product Registration · N2</td><td class="cond">—</td><td class="act-cell">Tạo SKU Master mỗi color × size</td></tr>
+        <tr data-drawer="auto:A_PR2"><td class="aid">A_PR2</td><td>SKU Master created</td><td class="cond"><code>pos_synced</code>=Off</td><td class="act-cell">Push lên KiotViet / POS</td></tr>
+        <tr data-drawer="auto:A_PRQ1"><td class="aid">A_PRQ1</td><td>Production Request · N3</td><td class="cond">—</td><td class="act-cell">Tạo Factory Quotation</td></tr>
+        <tr data-drawer="auto:A_FQ1"><td class="aid">A_FQ1</td><td>Factory Quotation · N5 selected</td><td class="cond"><code>selected</code>=On</td><td class="act-cell">Tạo Production Order</td></tr>
+        <tr data-drawer="auto:A_PO1"><td class="aid">A_PO1</td><td>Production Order confirmed</td><td class="cond">—</td><td class="act-cell">Tạo Production Lot mỗi đợt giao</td></tr>
+        <tr data-drawer="auto:A_PO2"><td class="aid">A_PO2</td><td>Production Order · "Material Ready"</td><td class="cond">—</td><td class="act-cell">Tạo NPL Issue mỗi lot</td></tr>
+        <tr data-drawer="auto:A_LOT1"><td class="aid">A_LOT1</td><td>Production Lot · "Shipped"</td><td class="cond">—</td><td class="act-cell">Tạo Inbound Lot</td></tr>
+        <tr data-drawer="auto:A_IB1"><td class="aid">A_IB1</td><td>Inbound Lot · N3 QC</td><td class="cond">—</td><td class="act-cell">Tạo QC Inspection (Final)</td></tr>
+        <tr data-drawer="auto:A_IB2"><td class="aid">A_IB2</td><td>Inbound Lot · N4 complete</td><td class="cond">—</td><td class="act-cell">Update SKU Master stock (SKU đã có)</td></tr>
+        <tr data-drawer="auto:A_ALO1"><td class="aid">A_ALO1</td><td>Allocation Order approved</td><td class="cond">—</td><td class="act-cell">Push KiotViet + tạo Store Receipts</td></tr>
+        <tr data-drawer="auto:A_KILL"><td class="aid" style="color:var(--p-color-text-critical)">A_KILL</td><td>Sample Review result = "Hủy"</td><td class="cond">—</td><td class="act-cell">Set Style = Hủy, lock all fields, notify team</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout info" style="margin-top:18px;">
+    <span class="ci">⚡</span>
+    <div>Ngoài 26 automation cốt lõi, lớp <b>SLA &amp; Notification</b> chạy song song: nhắc deadline node, cảnh báo trễ, escalate khi gate lặp &gt; 3 vòng. Cấu hình ở Sprint 2 · Day 14.</div>
+  </div>
+</div>
